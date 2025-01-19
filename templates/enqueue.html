@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ENGINUITY - LINKED LIST</title>
+    <link rel="stylesheet" href="../static/css/enqueueStyle.css" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="../static/images/icon.png"
+        alt="Enginuity Logo"
+        class="header-logo"
+      />
+      <h1><b>Enginuity: Crafting Tomorrow with the Genius of Today</b></h1>
+      <nav>
+        <button onclick="document.location='/#home'">Home</button>
+        <button onclick="document.location='/#about-us'">About Us</button>
+        <button onclick="document.location='/#works'">Works</button>
+      </nav>
+    </header>
+    <h2 class="form-header">Enqueue</h2>
+    <section>
+      <form action="#" method="post">
+        <textarea
+          id="input-area"
+          name="input"
+          placeholder="Enter your input here..."
+        ></textarea>
+        <div class="button-container">
+          <button
+            type="submit"
+            name="action"
+            value="enqueue"
+            class="btn btn-primary"
+          >
+            Enqueue
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="dequeue"
+            class="btn btn-primary"
+          >
+            Dequeue
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="size"
+            class="btn btn-danger"
+          >
+            Size
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="empty"
+            class="btn btn-warning"
+          >
+            Empty
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="print"
+            class="btn btn-info"
+          >
+            Print
+          </button>
+        </div>
+        <textarea
+          id="output-area"
+          readonly
+          placeholder="Output will appear here..."
+        >{% if success_message %}{{ success_message }}{% else %}Output will appear here...{% endif %}</textarea>
+      </form>
+    </section>
+  </body>
+</html>

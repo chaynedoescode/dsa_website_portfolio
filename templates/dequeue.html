@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ENGINUITY - LINKED LIST</title>
+    <link rel="stylesheet" href="../static/css/dequeueStyle.css" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="../static/images/icon.png"
+        alt="Enginuity Logo"
+        class="header-logo"
+      />
+      <h1><b>Enginuity: Crafting Tomorrow with the Genius of Today</b></h1>
+      <nav>
+        <button onclick="document.location='/#home'">Home</button>
+        <button onclick="document.location='/#about-us'">About Us</button>
+        <button onclick="document.location='/#works'">Works</button>
+      </nav>
+    </header>
+    <h2 class="form-header">Dequeue</h2>
+
+    <section>
+      <form action="#" method="post">
+        <textarea
+          id="input-area"
+          name="input"
+          placeholder="Enter your input here..."
+        ></textarea>
+        <div class="button-container">
+          <button
+            type="submit"
+            name="action"
+            value="add_front"
+            class="btn btn-primary"
+          >
+            Add Front
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="add_rear"
+            class="btn btn-primary"
+          >
+            Add Rear
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="size"
+            class="btn btn-danger"
+          >
+            Size
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="remove_front"
+            class="btn btn-danger"
+          >
+            Remove Front
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="remove_rear"
+            class="btn btn-warning"
+          >
+            Remove Rear
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="empty"
+            class="btn btn-info"
+          >
+            Empty
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="print"
+            id="print-btn"
+            class="btn btn-success full-width"
+          >
+            Print De-Queue
+          </button>
+        </div>
+        <textarea
+          id="output-area"
+          readonly
+          placeholder="Output will appear here..."
+        >{% if success_message %}{{ success_message }}{% else %}Output will appear here...{% endif %}</textarea>
+      </form>
+    </section>
+  </body>
+</html>
