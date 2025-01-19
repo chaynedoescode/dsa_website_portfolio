@@ -64,15 +64,17 @@ positions = {
     "EDSA": (0, -4), "Baclaran": (0, -5),
 }
 
-# Get edge colors
+# Get edge colors and widths
 edges = G.edges(data=True)
 colors = [edge[2]["color"] for edge in edges]
+widths = [2 for _ in edges]  # Set the width of all edges to 2
 
 # Draw the graph
 plt.figure(figsize=(12, 8))
 nx.draw(
     G, pos=positions, with_labels=True, node_size=50, font_size=8,
-    edge_color=colors, node_color="lightgray"
+    edge_color=colors, width=widths, node_color="lightgray",
+    verticalalignment='bottom'  # Lower the labels
 )
 plt.title("Metro Manila Rail Transit System")
 plt.axis("off")
