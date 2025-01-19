@@ -6,7 +6,7 @@ G = nx.Graph()
 # Add LRT Line 2 stations
 lrt2_stations = [
     "Recto", "Legarda", "Pureza", "V. Mapa", "J. Ruiz", "Gilmore",
-    "Betty Go-Belmonte", "Cubao", "Anonas", "Katipunan", "Santolan"
+    "Betty Go-Belmonte", "Cubao", "Anonas", "Katipunan", "Santolan", "Antipolo"
 ]
 
 # Add MRT Line 3 stations
