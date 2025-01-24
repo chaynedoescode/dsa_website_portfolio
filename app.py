@@ -72,23 +72,26 @@ def enqueue():
 
         if action == 'enqueue':
             queue.enqueue(input_value)
-            success_message = f'Enqueued: {input_value}'
         elif action == 'dequeue':
-            dequeued_value = queue.dequeue()
-            success_message = f'Dequeued: {dequeued_value}' if dequeued_value else 'Queue is empty'
+            queue.dequeue()
         elif action == 'size':
             size = queue.size()
             success_message = f'Queue size: {size}'
+            return render_template('enqueue.html', success_message=success_message)
         elif action == 'empty':
             is_empty = queue.is_empty()
             success_message = 'Queue is empty' if is_empty else 'Queue is not empty'
+            return render_template('enqueue.html', success_message=success_message)
         elif action == 'print':
-            # Assuming print_queue returns a string representation of the queue
             queue_contents = queue.print_queue()
             success_message = f'Queue contents: {queue_contents}'
+            return render_template('enqueue.html', success_message=success_message)
         else:
             success_message = 'Invalid action'
+            return render_template('enqueue.html', success_message=success_message)
 
+        queue_contents = queue.print_queue()
+        success_message = f'Queue contents: {queue_contents}'
         return render_template('enqueue.html', success_message=success_message)
 
     return render_template('enqueue.html')
@@ -101,28 +104,30 @@ def dequeue_route():
 
         if action == 'add_front':
             dequeue.add_front(input_value)
-            success_message = f'Added to front: {input_value}'
         elif action == 'add_rear':
             dequeue.add_rear(input_value)
-            success_message = f'Added to rear: {input_value}'
         elif action == 'remove_front':
-            removed_value = dequeue.remove_front()
-            success_message = f'Removed from front: {removed_value}' if removed_value else 'Dequeue is empty'
+            dequeue.remove_front()
         elif action == 'remove_rear':
-            removed_value = dequeue.remove_rear()
-            success_message = f'Removed from rear: {removed_value}' if removed_value else 'Dequeue is empty'
+            dequeue.remove_rear()
         elif action == 'size':
             size = dequeue.size()
             success_message = f'Dequeue size: {size}'
+            return render_template('dequeue.html', success_message=success_message)
         elif action == 'empty':
             is_empty = dequeue.is_empty()
             success_message = 'Dequeue is empty' if is_empty else 'Dequeue is not empty'
+            return render_template('dequeue.html', success_message=success_message)
         elif action == 'print':
             dequeue_contents = dequeue.print_queue()
             success_message = f'Dequeue contents: {dequeue_contents}'
+            return render_template('dequeue.html', success_message=success_message)
         else:
             success_message = 'Invalid action'
+            return render_template('dequeue.html', success_message=success_message)
 
+        dequeue_contents = dequeue.print_queue()
+        success_message = f'Dequeue contents: {dequeue_contents}'
         return render_template('dequeue.html', success_message=success_message)
 
     return render_template('dequeue.html')
