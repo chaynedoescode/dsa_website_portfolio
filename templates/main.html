@@ -37,36 +37,126 @@
     <h3>About Us</h3>
     <h4>Meet the Developers</h4>
     <div class="gallery">
-      <div class="image-container">
-        <img src="../static/images/aldrian.jpg" alt="Aldrian Cabaccan">
-        <div class="description"><b>Aldrian Cabaccan<br>Front-End Developer</b></div>
-      </div>
-      <div class="image-container">
-        <img src="../static/images/drei.jpg" alt="Andrei Chayne Montanez">
-        <div class="description"><b>Andrei Chayne Montanez<br>Front-End Developer</b></div>
-      </div>
-      <div class="image-container">
-        <img src="../static/images/icer.jpg" alt="Ahiezer Dayl Dalangin">
-        <div class="description"><b>Ahiezer Dayl Dalangin<br>Front-End Developer</b></div>
-      </div>
-      <div class="image-container">
-        <img src="../static/images/vlad.jpg" alt="Richard Vladimir Natividad">
-        <div class="description"><b>Richard Vladimir Natividad<br>Front-End Developer</b></div>
-      </div>
-      <div class="image-container">
-        <img src="../static/images/mark.jpg" alt="Mark Justine Apitan">
-        <div class="description"><b>Mark Justine Apitan<br>Back-End Developer</b></div>
-      </div>
-      <div class="image-container">
-        <img src="../static/images/jovit.jpg" alt="Jovit Laniwan">
-        <div class="description"><b>Jovit Laniwan<br>Back-End Developer</b></div>
-      </div>
-      <div class="image-container">
-        <img src="../static/images/tian.jpg" alt="Christian Kristopher Dalayoan">
-        <div class="description"><b>Christian Kristopher Dalayoan<br>Back-End Developer</b></div>
-      </div>
+        <!-- Aldrian -->
+        <div class="image-container">
+            <img src="../static/images/aldrian.jpg" alt="Aldrian Cabaccan" onclick="openModal('modal-aldrian')">
+            <div class="description"><b>Aldrian Cabaccan<br>Front-End Developer</b></div>
+        </div>
+
+        <!-- Andrei -->
+        <div class="image-container">
+            <img src="../static/images/drei.jpg" alt="Andrei Chayne Montanez" onclick="openModal('modal-andrei')">
+            <div class="description"><b>Andrei Chayne Montanez<br>Front-End Developer</b></div>
+        </div>
+
+        <!-- Ahiezer -->
+        <div class="image-container">
+            <img src="../static/images/icer.jpg" alt="Ahiezer Dayl Dalangin" onclick="openModal('modal-ahiezer')">
+            <div class="description"><b>Ahiezer Dayl Dalangin<br>Front-End Developer</b></div>
+        </div>
+
+        <!-- Richard -->
+        <div class="image-container">
+            <img src="../static/images/vlad.jpg" alt="Richard Vladimir Natividad" onclick="openModal('modal-richard')">
+            <div class="description"><b>Richard Vladimir Natividad<br>Front-End Developer</b></div>
+        </div>
+
+        <!-- Mark -->
+        <div class="image-container">
+            <img src="../static/images/mark.jpg" alt="Mark Justine Apitan" onclick="openModal('modal-mark')">
+            <div class="description"><b>Mark Justine Apitan<br>Back-End Developer</b></div>
+        </div>
+
+        <!-- Jovit -->
+        <div class="image-container">
+            <img src="../static/images/jovit.jpg" alt="Jovit Laniwan" onclick="openModal('modal-jovit')">
+            <div class="description"><b>Jovit Laniwan<br>Back-End Developer</b></div>
+        </div>
+
+        <!-- Christian -->
+        <div class="image-container">
+            <img src="../static/images/tian.jpg" alt="Christian Kristopher Dalayoan" onclick="openModal('modal-christian')">
+            <div class="description"><b>Christian Kristopher Dalayoan<br>Back-End Developer</b></div>
+        </div>
     </div>
-  </div>
+</div>
+
+<!-- Modals -->
+<div id="modal-aldrian" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-aldrian')">&times;</span>
+        <h2>Aldrian Cabaccan</h2>
+        <p>Front-End Developer</p>
+    </div>
+</div>
+
+<div id="modal-andrei" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-andrei')">&times;</span>
+        <h2>Andrei Chayne Montanez</h2>
+        <p>Front-End Developer</p>
+    </div>
+</div>
+
+<div id="modal-ahiezer" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-ahiezer')">&times;</span>
+        <h2>Ahiezer Dayl Dalangin</h2>
+        <p>Front-End Developer</p>
+    </div>
+</div>
+
+<div id="modal-richard" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-richard')">&times;</span>
+        <h2>Richard Vladimir Natividad</h2>
+        <p>Front-End Developer</p>
+    </div>
+</div>
+
+<div id="modal-mark" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-mark')">&times;</span>
+        <h2>Mark Justine Apitan</h2>
+        <p>Back-End Developer</p>
+    </div>
+</div>
+
+<div id="modal-jovit" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-jovit')">&times;</span>
+        <h2>Jovit Laniwan</h2>
+        <p>Back-End Developer</p>
+    </div>
+</div>
+
+<div id="modal-christian" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-christian')">&times;</span>
+        <h2>Christian Kristopher Dalayoan</h2>
+        <p>Back-End Developer</p>
+    </div>
+</div>
+
+<script> function openModal(modalId) {
+  document.getElementById(modalId).style.display = "block";
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = "none";
+}
+
+// Close the modal when clicking outside the content
+window.onclick = function (event) {
+  const modals = document.querySelectorAll(".modal");
+  modals.forEach((modal) => {
+      if (event.target === modal) {
+          modal.style.display = "none";
+      }
+  });
+};
+</script>
+
 
   <div id="works">
     <div class="container">
@@ -79,13 +169,13 @@
             <a href="/stack" class="box">
                 <span>Stack</span>
             </a>
-            <a href="#queueModal" class="box">
+            <a href="queue.html" class="box">
                 <span>Queue</span>
             </a>
             <a href="/binary_tree" class="box">
                 <span>Binary Tree</span>
             </a>
-            <a href="/graph" class="box">
+            <a href="GRAPH.html" class="box">
               <span>Graph</span>
           </a>
         </div>
@@ -102,8 +192,6 @@
         <a href="#" class="close">Close</a>
     </div>
 </div>
-
-
 
 
   <footer>

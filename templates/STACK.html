@@ -22,28 +22,33 @@
       </nav>
     </header>
 
-    <section>
-      <form action="/stack" method="post">
-        <textarea
-          id="input-area"
-          name="input"
-          placeholder="Enter your infix equation here..."
-        >{{user_input}}</textarea>
-        <div class="button-container">
-          <button
-            type="submit"
-            name="action"
-            value="convert"
-            id="convert-btn"
-            class="btn btn-success full-width"
-          >
-            Convert to Postfix Equation
-          </button>
-        </div>
+    <div class="flex-container">
+      <section class="input-section">
+        <form action="/stack" method="post">
+          <textarea
+            id="input-area"
+            name="input"
+            placeholder="Enter your infix equation here..."
+          >{{user_input}}</textarea>
+          <div class="button-container">
+            <button
+              type="submit"
+              name="action"
+              value="convert"
+              id="convert-btn"
+              class="btn btn-success full-width"
+            >
+              Convert to Postfix Equation
+            </button>
+          </div>
+        </form>
+      </section>
+      <section class="output-section">
         <pre id="output-area" class="output-area">
-{% if steps %}{{ steps | safe }}{% else %}Output will appear here...{% endif %}</pre
-        >
-      </form>
-    </section>
+          {% if steps %}{{ steps | safe }}{% else %}Output will appear here...{% endif %}
+        </pre>
+      </section>
+    </div>
+    
   </body>
 </html>

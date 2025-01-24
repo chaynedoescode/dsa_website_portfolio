@@ -248,6 +248,68 @@ color: #555;
 }
 }
 
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 10; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto; 
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+
+.modal-content h2 {
+  font-size: 24px;
+}
+
+.modal-content p {
+  font-size: 18px;
+  color: #555;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* Image hover effect */
+.gallery img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+
 h4 {
 font-size: 40px;
 margin-top: 40px;
@@ -348,66 +410,66 @@ footer .contact-icons img {
   margin-right: 10px; 
 }
 
-/* Modal base styling */
+/* Modal Styles */
 .modal {
-  position: fixed;
-  top: 0;
+  display: none; 
+  position: fixed; 
+  z-index: 10; 
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.3s;
-  z-index: 1000;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.8); 
 }
 
-.modal:target {
-  visibility: visible;
-  opacity: 1;
-}
-
-/* Modal content styling */
 .modal-content {
-  background: white;
+  background-color: white;
+  margin: 15% auto; 
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
+  width: 80%;
+  height: 50%;
   text-align: center;
-  max-width: 4000px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.5s;
 }
 
-/* Modal buttons inside the modal */
-.modal-button {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+.modal-content h2 {
+  font-size: 24px;
 }
 
-.modal-button:hover {
-  background-color: #0056b3;
+.modal-content p {
+  font-size: 18px;
+  color: #555;
 }
 
-/* Close button */
 .close {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #808080;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
 }
 
 .close:hover {
-  background-color: #a71d2a;
+  color: red;
 }
+
+/* Image hover effect */
+.gallery img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+

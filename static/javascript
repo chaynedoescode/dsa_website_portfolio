@@ -1,0 +1,16 @@
+function openModal(name, role) {
+  document.getElementById("modal-name").innerText = name;
+  document.getElementById("modal-role").innerText = role;
+  document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// Close the modal when clicking outside the content
+window.onclick = function (event) {
+  if (event.target === document.getElementById("modal")) {
+      closeModal();
+  }
+};

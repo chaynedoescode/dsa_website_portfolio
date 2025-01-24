@@ -4,11 +4,11 @@ body {
     padding: 0;
     box-sizing: border-box;
   }
-
+  
   html {
     scroll-behavior: smooth; 
   }
-
+  
   header {      
     display: flex;
     justify-content: space-between;
@@ -20,28 +20,28 @@ body {
     z-index: 1000;
     top: 0;
   }
-
+  
   .header-logo-text {
     display: flex;
     align-items: center;
   }
-
+  
   .header-logo {
     width: 30px;
     height: auto;
   }
-
+  
   header h1 {
     margin-left: 10px; 
     font-size: 24px;
     font-weight: normal;
     color: #333;
   }
-
+  
   nav {
     margin-left: auto; 
   }
-
+  
   nav button {
     font-size: 18px;
     letter-spacing: 2px;
@@ -59,7 +59,7 @@ body {
     transition: 0.3s ease all;
     z-index: 1;
   }
-
+  
   nav button:before {
     transition: 0.5s all ease;
     position: absolute;
@@ -72,12 +72,12 @@ body {
     background-color: #808080;
     z-index: -1;
   }
-
+  
   nav button:hover,
   nav button:focus {
     color: white;
   }
-
+  
   nav button:hover:before,
   nav button:focus:before {
     transition: 0.5s all ease;
@@ -85,101 +85,94 @@ body {
     right: 0;
     opacity: 1;
   }
-
+  
   nav button:active {
     transform: scale(0.9);
   }
-
+  
   nav button {
     margin-left: 20px;
     cursor: pointer;
     border: none;
     background: none;
   }
-
+  
   nav button:hover {
     text-decoration: underline;
   }
-
-  .container {
-    padding: 20px;
-  }
-
-
-/* Input Area */
-#input-area {
-    width: 100%;
-    max-width: 1000px;
-    padding: 10px;
-    margin: 20px auto;  
-    margin-top: 120px; /*pang gitna*/
-    display: block;
-    font-size: 16px;
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-/* Output Area */
-#output-area {
-    width: 100%;
-    max-width: 1000px;
-    padding: 10px;
-    margin: 10px auto;
-    display: block;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-/* Button Container */
-.button-container {
+  
+/* Main container for alignment */
+.main-container {
     display: flex;
-    justify-content: space-between;
-    max-width: 1000px; 
-    max-height: 800px;
+    justify-content: space-around; /* Ensure sections are spaced equally */
+    align-items: flex-start; /* Align both sections to the top */
+    gap: 20px; /* Space between the two sections */
+    padding: 10px;
+    max-width: 1400px; /* Restrict max width for a centered layout */
     margin: 0 auto;
-    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
-/* Buttons in the container */
-.button-container button {
-    width: 30%; 
-    margin: 5px 0;
+/* Section container styling */
+div > section {
+    flex: 1; /* Equal distribution of space */
+    padding: 10px; /* Inner spacing within the container */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 200%;
+    max-width: 200%;
+    margin-left: -70px;
+}
+
+/* Header styling */
+.enqueue-header,
+.dequeue-header {
+    display: flow-root;
+    justify-content: center; /* Center align header text */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Textarea styling */
+textarea {
+    width: 100%;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f4f4f4;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+/* Specific styles for output area */
+textarea#output-area {
+    height: 100px; /* Adjust output area height */
+    background-color: #f9f9f9;
+    overflow-y: auto; /* Scroll if content overflows */
+}
+
+/* Button container styles */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Arrange buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     cursor: pointer;
+    text-align: center;
 }
 
-/* Button for full width (Print Button) */
-.button-container .full-width {
-    width: 100%; /* Button spans the full width */
-}
-
-/* Button hover effect */
-.button-container button:hover {
+button:hover {
     background-color: #ddd;
 }
 
 
-/* Output Area styling */
-#output-area {
-    background-color: #f9f9f9;
-    height: 50px;
-    text-align: left;
-    overflow: hidden;
-}
 
-/* Success Indicator styling */
-#success-indicator {
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-    display: none; 
-}
-
+  

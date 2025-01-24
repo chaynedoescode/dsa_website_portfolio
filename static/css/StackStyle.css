@@ -105,68 +105,80 @@ nav button:hover {
   padding: 20px;
 }
 
+/* Flex container to align input, button, and output */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  margin-top: 100px; /* Adjust as needed for vertical centering */
+  gap: 40px; /* Space between input and output sections */
+}
+
+/* Input Section */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Stretch input and button to full width */
+  width: 600px; /* Make the input section wider */
+  margin-left: 0px; /* Adjust left margin for input section */
+  margin-right: 200px;
+  margin-bottom: 100px;
+}
+
 /* Input Area */
 #input-area {
   width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  margin: 20px auto;  
-  margin-top: 120px; /*pang gitna*/
-  display: block;
-  font-size: 16px;
-  border: 1px solid #ccc; 
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-/* Output Area */
-#output-area {
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  margin: 10px auto;
-  display: block;
+  padding: 15px; /* Increase padding for larger input field */
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: #f9f9f9;
-  height: 200px; /* Adjust the height as needed */
-  text-align: left;
-  overflow-y: auto; /* Add scroll if content overflows */
-  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  margin-bottom: 10px; /* Add space between input and button */
 }
 
 /* Button Container */
 .button-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 400px; 
-  margin: 0 auto;
-  flex-wrap: wrap;
+  text-align: center; /* Center the button */
 }
 
 /* Buttons in the container */
 .button-container button {
-  width: 30%; 
-  margin: 5px 0;
-  padding: 10px;
-  font-size: 14px;
+  width: 100%; /* Button spans the full width */
+  padding: 15px; /* Increase padding for larger button */
+  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f4f4f4;
   cursor: pointer;
 }
 
-/* Button for full width (Print Button) */
-.button-container .full-width {
-  width: 100%; /* Button spans the full width */
-}
-
-/* Button hover effect */
 .button-container button:hover {
   background-color: #ddd;
 }
+
+.output-section {
+  width: 400px; /* Match width with the input section */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Output Area */
+#output-area {
+  width: 100%;
+  max-width: 400px; /* Keep the same width */
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  height: 350px; /* Adjust the height here as needed */
+  overflow-y: auto; /* Add scroll if content overflows */
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
 
 /* Success Indicator styling */
 #success-indicator {
