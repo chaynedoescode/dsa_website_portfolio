@@ -78,8 +78,11 @@ def queue_view():
             queue.enqueue(queue_input)
             queue_message = f'Queue contents: {queue.print_queue()}'
         elif action == 'dequeue':
-            queue.dequeue()
-            queue_message = f'Queue contents: {queue.print_queue()}'
+            if queue.is_empty():
+                queue_message = 'ERROR! Queue is empty'
+            else:
+                queue.dequeue()
+                queue_message = f'Queue contents: {queue.print_queue()}'
         elif action == 'queue_size':
             size = queue.size()
             queue_message = f'Queue size: {size}'
@@ -99,11 +102,17 @@ def queue_view():
             size = dequeue.size()
             dequeue_message = f'Dequeue size: {size}'
         elif action == 'remove_front':
-            dequeue.remove_front()
-            dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
+            if dequeue.is_empty():
+                dequeue_message = 'ERROR! Dequeue is empty'
+            else:
+                dequeue.remove_front()
+                dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
         elif action == 'remove_rear':
-            dequeue.remove_rear()
-            dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
+            if dequeue.is_empty():
+                dequeue_message = 'ERROR! Dequeue is empty'
+            else:
+                dequeue.remove_rear()
+                dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
         elif action == 'dequeue_empty':
             is_empty = dequeue.is_empty()
             dequeue_message = 'Dequeue is empty' if is_empty else 'Dequeue is not empty'
