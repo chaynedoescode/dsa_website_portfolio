@@ -126,8 +126,13 @@ def queue_view():
                 dequeue_message = 'Invalid action'
 
     return render_template('queue.html', queue_message=queue_message, dequeue_message=dequeue_message)
+
+@app.route ('/binary_tree')
 def tree():
-    return render_template('BINARY TREE.html')
+    return render_template('binary_tree.html')
+@app.route ('/graph')   
+def graph():
+    return render_template('graph.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
