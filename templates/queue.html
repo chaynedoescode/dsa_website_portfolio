@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ENGINUITY - LINKED LIST</title>
+    <title>ENGINUITY - QUEUE AND DEQUEUE</title>
     <link rel="stylesheet" href="../static/css/queueStyle.css" />
   </head>
   <body>
@@ -21,24 +21,26 @@
       </nav>
     </header>
     <div class="main-container">
-        <!-- Enqueue Section -->
+        <!-- Queue Section -->
         <div>
-          <h2 class="enqueue-header">Enqueue</h2>
+          <h2 class="queue-header">Queue</h2>
           <section>
-            <form action="#" method="post" class="enqueue-form">
+            <form action="/queue" method="post" class="queue-form">
               <textarea
-                id="input-area"
-                name="input"
-                placeholder="Enter your input here..."
+                id="queue-input-area"
+                name="queue_input"
+                placeholder="Enter your input for queue here..."
               ></textarea>
               <div class="button-container">
                 <button type="submit" name="action" value="enqueue" class="btn btn-primary">Enqueue</button>
                 <button type="submit" name="action" value="dequeue" class="btn btn-primary">Dequeue</button>
-                <button type="submit" name="action" value="size" class="btn btn-danger">Size</button>
-                <button type="submit" name="action" value="empty" class="btn btn-warning">Empty</button>
-                <button type="submit" name="action" value="print" class="btn btn-info">Print</button>
+                <button type="submit" name="action" value="queue_size" class="btn btn-danger">Size</button>
+                <button type="submit" name="action" value="queue_empty" class="btn btn-warning">Empty</button>
+                <button type="submit" name="action" value="queue_print" class="btn btn-info">Print</button>
               </div>
-              <textarea id="output-area" readonly placeholder="Output will appear here..."></textarea>
+              <textarea id="queue-output-area" readonly placeholder="Queue output will appear here...">{{ queue_message }}</textarea>
+              <input type="hidden" name="queue_message" value="{{ queue_message }}">
+              <input type="hidden" name="dequeue_message" value="{{ dequeue_message }}">
             </form>
           </section>
         </div>
@@ -47,26 +49,27 @@
         <div>
           <h2 class="dequeue-header">Dequeue</h2>
           <section id="dequeue-section">
-            <form action="#" method="post">
+            <form action="/queue" method="post">
               <textarea
-                id="input-area"
-                name="input"
-                placeholder="Enter your input here..."
+                id="dequeue-input-area"
+                name="dequeue_input"
+                placeholder="Enter your input for dequeue here..."
               ></textarea>
               <div class="button-container">
                 <button type="submit" name="action" value="add_front" class="btn btn-primary">Add Front</button>
                 <button type="submit" name="action" value="add_rear" class="btn btn-primary">Add Rear</button>
-                <button type="submit" name="action" value="size" class="btn btn-danger">Size</button>
+                <button type="submit" name="action" value="dequeue_size" class="btn btn-danger">Size</button>
                 <button type="submit" name="action" value="remove_front" class="btn btn-danger">Remove Front</button>
                 <button type="submit" name="action" value="remove_rear" class="btn btn-warning">Remove Rear</button>
-                <button type="submit" name="action" value="empty" class="btn btn-info">Empty</button>
-                <button type="submit" name="action" value="print" id="print-btn" class="btn btn-success full-width">Print De-Queue</button>
+                <button type="submit" name="action" value="dequeue_empty" class="btn btn-info">Empty</button>
+                <button type="submit" name="action" value="dequeue_print" id="print-btn" class="btn btn-success full-width">Print De-Queue</button>
               </div>
-              <textarea id="output-area" readonly placeholder="Output will appear here..."></textarea>
+              <textarea id="dequeue-output-area" readonly placeholder="Dequeue output will appear here...">{{ dequeue_message }}</textarea>
+              <input type="hidden" name="queue_message" value="{{ queue_message }}">
+              <input type="hidden" name="dequeue_message" value="{{ dequeue_message }}">
             </form>
           </section>
         </div>
       </div>
-      
   </body>
 </html>

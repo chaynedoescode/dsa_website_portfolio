@@ -65,74 +65,58 @@ def stack():
     return render_template('STACK.html', user_input=user_input, steps=steps)
 
 @app.route('/queue', methods=['GET', 'POST'])
-def enqueue():
+def queue_view():
+    queue_message = request.form.get('queue_message', "Output will appear here")
+    dequeue_message = request.form.get('dequeue_message', "Output will appear here")
+    
     if request.method == 'POST':
         action = request.form['action']
-        input_value = request.form.get('input', '')
+        queue_input = request.form.get('queue_input', '')
+        dequeue_input = request.form.get('dequeue_input', '')
 
         if action == 'enqueue':
-            queue.enqueue(input_value)
+            queue.enqueue(queue_input)
+            queue_message = f'Queue contents: {queue.print_queue()}'
         elif action == 'dequeue':
             queue.dequeue()
-        elif action == 'size':
+            queue_message = f'Queue contents: {queue.print_queue()}'
+        elif action == 'queue_size':
             size = queue.size()
-            success_message = f'Queue size: {size}'
-            return render_template('queue.html', success_message=success_message)
-        elif action == 'empty':
+            queue_message = f'Queue size: {size}'
+        elif action == 'queue_empty':
             is_empty = queue.is_empty()
-            success_message = 'Queue is empty' if is_empty else 'Queue is not empty'
-            return render_template('queue.html', success_message=success_message)
-        elif action == 'print':
+            queue_message = 'Queue is empty' if is_empty else 'Queue is not empty'
+        elif action == 'queue_print':
             queue_contents = queue.print_queue()
-            success_message = f'Queue contents: {queue_contents}'
-            return render_template('queue.html', success_message=success_message)
-        else:
-            success_message = 'Invalid action'
-            return render_template('queue.html', success_message=success_message)
-
-        queue_contents = queue.print_queue()
-        success_message = f'Queue contents: {queue_contents}'
-        return render_template('queue.html', success_message=success_message)
-
-    return render_template('queue.html')
-
-@app.route('/dequeue', methods=['GET', 'POST'])
-def dequeue_route():
-    if request.method == 'POST':
-        action = request.form['action']
-        input_value = request.form.get('input', '')
-
-        if action == 'add_front':
-            dequeue.add_front(input_value)
+            queue_message = f'Queue contents: {queue_contents}'
+        elif action == 'add_front':
+            dequeue.add_front(dequeue_input)
+            dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
         elif action == 'add_rear':
-            dequeue.add_rear(input_value)
+            dequeue.add_rear(dequeue_input)
+            dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
+        elif action == 'dequeue_size':
+            size = dequeue.size()
+            dequeue_message = f'Dequeue size: {size}'
         elif action == 'remove_front':
             dequeue.remove_front()
+            dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
         elif action == 'remove_rear':
             dequeue.remove_rear()
-        elif action == 'size':
-            size = dequeue.size()
-            success_message = f'Dequeue size: {size}'
-            return render_template('dequeue.html', success_message=success_message)
-        elif action == 'empty':
+            dequeue_message = f'Dequeue contents: {dequeue.print_queue()}'
+        elif action == 'dequeue_empty':
             is_empty = dequeue.is_empty()
-            success_message = 'Dequeue is empty' if is_empty else 'Dequeue is not empty'
-            return render_template('dequeue.html', success_message=success_message)
-        elif action == 'print':
+            dequeue_message = 'Dequeue is empty' if is_empty else 'Dequeue is not empty'
+        elif action == 'dequeue_print':
             dequeue_contents = dequeue.print_queue()
-            success_message = f'Dequeue contents: {dequeue_contents}'
-            return render_template('dequeue.html', success_message=success_message)
+            dequeue_message = f'Dequeue contents: {dequeue_contents}'
         else:
-            success_message = 'Invalid action'
-            return render_template('dequeue.html', success_message=success_message)
+            if action.startswith('queue'):
+                queue_message = 'Invalid action'
+            else:
+                dequeue_message = 'Invalid action'
 
-        dequeue_contents = dequeue.print_queue()
-        success_message = f'Dequeue contents: {dequeue_contents}'
-        return render_template('dequeue.html', success_message=success_message)
-
-    return render_template('dequeue.html')
-
-@app.route('/binary_tree')
+    return render_template('queue.html', queue_message=queue_message, dequeue_message=dequeue_message)
 def tree():
     return render_template('BINARY TREE.html')
 
