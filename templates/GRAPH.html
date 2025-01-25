@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binary Tree with Rail Map</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/queueStyle.css') }}">
+    <title>Get Station Coordinates</title>
     <style>
-        /* Additional styles to ensure the iframe fits well */
-        #left-container {
+        #top-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 100%;
+            position: relative;
         }
         iframe {
-            width: 90%; /* Adjust the width as needed */
-            height: 400px; /* Adjust the height as needed */
+            width: 100%;
+            height: 100vh;
             border: none;
+        }
+        #bottom-container {
+            display: flex;
+            height: 30%;
+        }
+        #output-container {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            overflow-y: auto;
+        }
+        #output-container p {
+            margin: 0;
+            padding: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Enginuity Logo" class="header-logo">
-        <h1><b>Enginuity: Crafting Tomorrow with the Genius of Today</b></h1>
-        <nav>
-            <button onclick="document.location='/#home'">Home</button>
-            <button onclick="document.location='/#about-us'">About Us</button>
-            <button onclick="document.location='/#works'">Works</button>
-        </nav>
-    </header>
-    <main style="display: flex; height: 100vh;">
-        <!-- Left container for matplotlib -->
-        <div id="left-container" style="flex: 1; border-right: 1px solid #ccc;">
-            <!-- Matplotlib visualization will go here -->
-            <h1>Metro Manila Rail Transit System</h1>
-            <iframe src="{{ url_for('static', filename='rail_map_with_interchanges.html') }}"></iframe>
+    <main style="display: flex; flex-direction: column; height: 100vh;">
+        <!-- Top container for the map -->
+        <div id="top-container">
+            <iframe id="rail-map" src="{{ url_for('static', filename='rail_map_with_interchanges.html') }}"></iframe>
         </div>
 
         <!-- Bottom container -->
