@@ -154,32 +154,9 @@ nav button:hover {
   cursor: pointer;
 }
 
-/* Button for full width (Print Button) */
-.button-container .full-width {
-  width: 100%; /* Button spans the full width */
-}
-
 /* Button hover effect */
 .button-container button:hover {
   background-color: #ddd;
-}
-
-
-/* Output Area styling */
-#output-area {
-  background-color: #f9f9f9;
-  height: 50px;
-  text-align: left;
-  overflow: hidden;
-}
-
-/* Success Indicator styling */
-#success-indicator {
-  color: green;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-  display: none; 
 }
 
 .form-header {
