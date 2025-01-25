@@ -64,7 +64,7 @@ def stack():
             return render_template('STACK.html', user_input=user_input, steps=steps)
     return render_template('STACK.html', user_input=user_input, steps=steps)
 
-@app.route('/enqueue', methods=['GET', 'POST'])
+@app.route('/queue', methods=['GET', 'POST'])
 def enqueue():
     if request.method == 'POST':
         action = request.form['action']
@@ -77,24 +77,24 @@ def enqueue():
         elif action == 'size':
             size = queue.size()
             success_message = f'Queue size: {size}'
-            return render_template('enqueue.html', success_message=success_message)
+            return render_template('queue.html', success_message=success_message)
         elif action == 'empty':
             is_empty = queue.is_empty()
             success_message = 'Queue is empty' if is_empty else 'Queue is not empty'
-            return render_template('enqueue.html', success_message=success_message)
+            return render_template('queue.html', success_message=success_message)
         elif action == 'print':
             queue_contents = queue.print_queue()
             success_message = f'Queue contents: {queue_contents}'
-            return render_template('enqueue.html', success_message=success_message)
+            return render_template('queue.html', success_message=success_message)
         else:
             success_message = 'Invalid action'
-            return render_template('enqueue.html', success_message=success_message)
+            return render_template('queue.html', success_message=success_message)
 
         queue_contents = queue.print_queue()
         success_message = f'Queue contents: {queue_contents}'
-        return render_template('enqueue.html', success_message=success_message)
+        return render_template('queue.html', success_message=success_message)
 
-    return render_template('enqueue.html')
+    return render_template('queue.html')
 
 @app.route('/dequeue', methods=['GET', 'POST'])
 def dequeue_route():
