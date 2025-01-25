@@ -428,19 +428,22 @@ footer .contact-icons img {
   margin: 15% auto; 
   padding: 20px;
   border-radius: 8px;
-  width: 80%;
-  height: 50%;
+  width: 1000px;
+  height: 400px;
   text-align: center;
   animation: fadeIn 0.5s;
 }
 
 .modal-content h2 {
   font-size: 24px;
+  color: #f0f0f0;
+  align-items: center;
 }
 
 .modal-content p {
   font-size: 18px;
-  color: #555;
+  color: #f0f0f0;
+  align-items: center;
 }
 
 .close {
