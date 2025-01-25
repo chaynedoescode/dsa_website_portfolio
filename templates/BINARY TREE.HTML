@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ENGINUITY - LINKED LIST</title>
-    <link rel="stylesheet" href="../static/css/dequeueStyle.css" />
+    <title>Binary Tree Operations</title>
+    <link rel="stylesheet" href="../static/css/queueStyle.css" />
   </head>
   <body>
     <header>
@@ -20,4 +20,37 @@
         <button onclick="document.location='/#works'">Works</button>
       </nav>
     </header>
+    <div class="main-container">
+        <!-- Binary Tree Section -->
+        <div>
+          <h2 class="tree-header">Binary Tree</h2>
+          <section>
+            <form action="/binary_tree" method="post" class="tree-form">
+              <label for="parent_node_id">Parent Node ID:</label>
+              <input type="text" id="parent_node_id" name="parent_node_id" placeholder="Enter parent node ID..." required>
+              
+              <label for="new_node_value">New Node Value:</label>
+              <input type="text" id="new_node_value" name="new_node_value" placeholder="Enter new node value..." required>
+              
+              <label for="position">Position:</label>
+              <select id="position" name="position" required>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+              
+              <div class="button-container">
+                <button type="submit" name="action" value="insert" class="btn btn-primary">Insert</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      
+        <div>
+          <h2 class="tree-header">Tree Structure</h2>
+          <section>
+            <pre id="tree-output-area">{{ tree_structure }}</pre>
+          </section>
+        </div>
+      </div>
+  </body>
 </html>
