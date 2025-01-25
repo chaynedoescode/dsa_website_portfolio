@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ENGINUITY - BINARY TREE</title>
-    <link rel="stylesheet" href="../static/css/dequeueStyle.css" />
+    <title>Binary Tree Operations</title>
+    <link rel="stylesheet" href="../static/css/binaryStyle.css" />
   </head>
-<body>
+  <body>
     <header>
       <img
         src="../static/images/icon.png"
@@ -20,36 +20,37 @@
         <button onclick="document.location='/#works'">Works</button>
       </nav>
     </header>
-
-    <main style="display: flex; height: calc(100vh - 150px);">
-      <!-- Left container for matplotlib -->
-      <div id="left-container" style="flex: 1; border-right: 1px solid #ccc;">
-        <!-- Matplotlib visualization will go here -->
-      </div>
-
-      <!-- Right containers -->
-      <div style="flex: 1; display: flex; flex-direction: column;">
-        <!-- Upper container with dropdown lists -->
-        <div id="upper-container" style="flex: 1; border-bottom: 1px solid #ccc; padding: 10px;">
-          <select id="dropdown-1" style="width: 100%; margin-bottom: 10px;">
-            <option value="">Select an option</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-          </select>
-
-          <select id="dropdown-2" style="width: 100%;">
-            <option value="">Select an option</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-          </select>
+    <div class="main-container">
+        <!-- Binary Tree Section -->
+        <div>
+          <h2 class="tree-header">Binary Tree</h2>
+          <section>
+            <form action="/binary_tree" method="post" class="tree-form">
+              <label for="parent_node_id">Parent Node ID:</label>
+              <input type="text" id="parent_node_id" name="parent_node_id" placeholder="Enter parent node ID..." required>
+              
+              <label for="new_node_value">New Node Value:</label>
+              <input type="text" id="new_node_value" name="new_node_value" placeholder="Enter new node value..." required>
+              
+              <label for="position">Position:</label>
+              <select id="position" name="position" required>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+              
+              <div class="button-container">
+                <button type="submit" name="action" value="insert" class="btn btn-primary">Insert</button>
+              </div>
+            </form>
+          </section>
         </div>
-
-        <!-- Lower container -->
-        <div id="lower-container" style="flex: 1;">
-          <!-- Empty for now -->
+      
+        <div>
+          <h2 class="tree-header">Tree Structure</h2>
+          <section>
+            <pre id="tree-output-area">{{ tree_structure }}</pre>
+          </section>
         </div>
       </div>
-    </main>
-
   </body>
 </html>
