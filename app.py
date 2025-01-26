@@ -132,7 +132,7 @@ def tree():
     return render_template('binary_tree.html')
 @app.route ('/graph')   
 def graph():
-    return render_template('graph.html')
+    return render_template('graphh.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
