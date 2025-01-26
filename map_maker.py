@@ -130,7 +130,7 @@ node_trace = go.Scatter(
     y=[positions[node][1] for node in G.nodes()],
     mode="markers+text",
     text=list(G.nodes()),
-    textposition="top center",
+    textposition="top left",
     marker=dict(size=10, color="lightgray"),
     name="Stations",
     showlegend=False  # Do not show legend for individual nodes
