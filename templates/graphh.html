@@ -29,11 +29,11 @@
             <!-- Form container -->
             <div id="form-container">
                 <div class="input-group">
-                    <input type="text" id="from-station" placeholder="From Station" readonly>
+                    <input type="text" id="from-station" placeholder="From:" readonly>
                     <button id="submit-button">Submit</button>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="to-station" placeholder="To Station" readonly>
+                    <input type="text" id="to-station" placeholder="To:" readonly>
                     <button id="reset-button">Reset</button>
                 </div>
             </div>
@@ -41,6 +41,9 @@
             <!-- Output container -->
             <div id="output-container">
                 <p>Click on the map to select a station.</p>
+            </div>
+            <div class = "tooltip">Help
+                <span class="tooltiptext">Click on the map to select the station</span>
             </div>
         </div>
     </main>
@@ -156,5 +159,6 @@
             console.log('Inputs reset.');
         });
     </script>
+    
 </body>
 </html>

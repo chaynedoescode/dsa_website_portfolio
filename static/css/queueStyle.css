@@ -101,27 +101,57 @@ body {
     text-decoration: underline;
   }
   
-/* Main container for alignment */
+
 .main-container {
-    display: flex;
-    justify-content: space-around; /* Ensure sections are spaced equally */
-    align-items: flex-start; /* Align both sections to the top */
-    gap: 20px; /* Space between the two sections */
-    padding: 10px;
-    max-width: 1400px; /* Restrict max width for a centered layout */
-    margin: 0 auto;
-    box-sizing: border-box;
+    flex: 1;
+    justify-content: center; /* Center the sections horizontally */
+    max-height: 1200px; /* Adjust height */
+    padding: 30px;
+  }  
+  
+/* Main container for alignment */
+.main-container section {
+  flex: 1; 
+  max-width: 800px; 
+  max-height: 1000px;
+  padding: 20px;  
+  box-sizing: border-box;
+
+}
+
+/* Input and button styling */
+.main-container section textarea,
+.main-container section button {
+  width: 100%; 
+  margin-bottom: 10px; 
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+
+}
+
+/* Styling for the output display */
+.main-container section .output {
+  width: 100%; 
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: monospace;
+  box-sizing: border-box;
 }
 
 /* Section container styling */
 div > section {
-    flex: 1; /* Equal distribution of space */
-    padding: 10px; /* Inner spacing within the container */
+    flex: 1;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 200%;
     max-width: 200%;
-    margin-left: -70px;
+    margin-left: 335px;
+    
 }
 
 /* Header styling */

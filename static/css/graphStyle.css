@@ -116,8 +116,9 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70%;
+  height: 100%;
   position: relative;
+  margin-top: -100px;
 }
 iframe {
   width: 100%;
@@ -126,13 +127,16 @@ iframe {
 }
 #bottom-container {
   display: flex;
-  height: 30%;
+  height: 20%;
+
 }
 #form-container {
   flex: 2; /* Occupy 2/3 of the space */
   padding: 10px;
   border-right: 1px solid #ccc;
   margin-left: 20px; /* Move to the right */
+  z-index: 1;
+  margin-top: -70px;
 }
 #form-container .input-group {
   display: flex;
@@ -153,8 +157,16 @@ iframe {
   border: 1px solid #ccc;
   overflow-y: auto;
   margin-left: 20px; /* Move to the right */
+  margin-top: -69px;
+  z-index: 1;
 }
 #output-container p {
   margin: 0;
   padding: 2px;
+}
+
+.tooltip{
+  position: relative;
+  display: inline-block;
+
 }
