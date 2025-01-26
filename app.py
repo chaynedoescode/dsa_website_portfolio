@@ -141,7 +141,7 @@ def graph():
             return f'Both "From" and "To" stations must be provided.'
         path = find_shortest_path(G, from_station, to_station)
         if path:
-            return f"Shortest path: {' -> '.join(path)}"
+            return f"Shortest path: {' —► '.join(path)}"
         else:
             return "No path found between the given stations."
     return render_template('graphh.html', output_text='Click on the map to select a station.')
