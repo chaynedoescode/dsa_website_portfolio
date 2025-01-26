@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from linked_list import LinkedList
 from stack import Stack, precedence, infix_to_postfix
 from q import Queue, Dequeue
+from graph import G, find_shortest_path
 
 app = Flask(__name__)
 linked_list = LinkedList()
@@ -127,12 +128,23 @@ def queue_view():
 
     return render_template('queue.html', queue_message=queue_message, dequeue_message=dequeue_message)
 
-@app.route ('/binary_tree')
+@app.route('/binary_tree')
 def tree():
     return render_template('binary_tree.html')
-@app.route ('/graph')   
+
+@app.route('/graph', methods=['GET', 'POST'])
 def graph():
-    return render_template('graphh.html')
+    if request.method == 'POST':
+        from_station = request.form.get('from_station')
+        to_station = request.form.get('to_station')
+        if not from_station or not to_station:
+            return f'Both "From" and "To" stations must be provided.'
+        path = find_shortest_path(G, from_station, to_station)
+        if path:
+            return f"Shortest path: {' -> '.join(path)}"
+        else:
+            return "No path found between the given stations."
+    return render_template('graphh.html', output_text='Click on the map to select a station.')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -29,79 +29,81 @@
             <!-- Form container -->
             <div id="form-container">
                 <div class="input-group">
-                    <input type="text" id="from-station" placeholder="From:" readonly>
+                    <input type="text" id="from-station" name="from_station" placeholder="From:" readonly>
                     <button id="submit-button">Submit</button>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="to-station" placeholder="To:" readonly>
+                    <input type="text" id="to-station" name="to_station" placeholder="To:" readonly>
                     <button id="reset-button">Reset</button>
                 </div>
             </div>
 
             <!-- Output container -->
             <div id="output-container">
-                <p>Click on the map to select a station.</p>
+                <p id="output-text">Click on the map to select a station.</p>
+            </div>
         </div>
     </main>
 
     <script>
         const lrt2Stations = {
-            "Recto": [257.00, 233.00],
-            "Legarda": [356.00, 233.00],
-            "Pureza": [450.00, 233.00],
-            "V. Mapa": [550.00, 233.00],
-            "J. Ruiz": [645.00, 233.00],
-            "Gilmore": [745.00, 233.00],
-            "Betty Go-Belmonte": [845.00, 233.00],
-            "Cubao": [942.00, 233.00],
-            "Anonas": [1037.00, 233.00],
-            "Katipunan": [1135.00, 233.00],
-            "Santolan": [1235.00, 233.00],
-            "Antipolo": [1330.00, 233.00],
+            "Recto": [260.00, 306.85],
+            "Legarda": [355.00, 306.85],
+            "Pureza": [456.00, 306.85],
+            "V. Mapa": [550.00, 307.85],
+            "J. Ruiz": [649.00, 307.85],
+            "Gilmore": [744.00, 306.85],
+            "Betty Go-Belmonte": [842.00, 307.85],
+            "Cubao": [942.00, 307.850],
+            "Anonas": [1038.00, 307.85],
+            "Katipunan": [1137.00, 307.85],
+            "Santolan": [1235.00, 307.85],
+            "Antipolo": [1332.00, 306.85],
         };
         const lrt1Stations = {
-            "Roosevelt": [356.00, 130.00],
-            "Balintawak": [256.00, 130.00],
-            "Monumento": [160.00, 130.00],
-            "5th Avenue": [160.00, 145.00],
-            "R. Papa": [160.00, 160.00],
-            "Abad Santos": [160.00, 175.00],
-            "Blumentritt": [160.00, 190.00],
-            "Tayuman": [160.00, 205.00],
-            "Bambang": [160.00, 220.00],
-            "Doroteo Jose": [160.00, 235.00],
-            "Carriedo": [160.00, 250.00],
-            "Central Terminal": [160.00, 265.00],
-            "United Nations (UN)": [160.00, 280.00],
-            "Pedro Gil": [160.00, 295.00],
-            "Quirino": [160.00, 310.00],
-            "Vito Cruz": [160.00, 325.00],
-            "Gil Puyat": [160.00, 340.00],
-            "Libertad": [160.00, 355.00],
-            "EDSA": [160.00, 370.00],
-            "Baclaran": [160.00, 385.00],
+            "Roosevelt": [354.00, 137.85],
+            "Balintawak": [258.00, 137.85],
+            "Monumento": [160.00, 137.85],
+            "5th Avenue": [160.00, 160.85],
+            "R. Papa": [160.00, 183.85],
+            "Abad Santos": [160.00, 208.85],
+            "Blumentritt": [160.00, 234.85],
+            "Tayuman": [160.00, 257.85],
+            "Bambang": [160.00, 281.85],
+            "Doroteo Jose": [160.00, 305.85],
+            "Carriedo": [160.00, 330.85],
+            "Central Terminal": [160.00, 355.85],
+            "United Nations (UN)": [160.00, 378.85],
+            "Pedro Gil": [160.00, 404.85],
+            "Quirino": [160.00, 428.85],
+            "Vito Cruz": [160.00, 450.85],
+            "Gil Puyat": [160.00, 476.85],
+            "Libertad": [160.00, 501.85],
+            "EDSA": [160.00, 523.85],
+            "Baclaran": [160.00, 549.85],
         };
 
         const mrt3Stations = {
-            "North Avenue": [747.00, 145.00],
-            "Quezon Avenue": [990.00, 173.00],
-            "GMA Kamuning": [990.00, 203.00],
-            "Araneta Center-Cubao": [990.00, 226.00],
-            "Santolan-Annapolis": [990.00, 264.00],
-            "Ortigas": [990.00, 293.00],
-            "Shaw Boulevard": [940.00, 307.00],
-            "Boni": [746.00, 323.00],
-            "Guadalupe": [648.00, 338.00],
-            "Buendia": [550.00, 367.00],
-            "Ayala": [453.00, 368.00],
-            "Magallanes": [356.00, 367.00],
-            "Taft Avenue": [256.00, 367.00],
+            "North Avenue": [745.00, 160.85],
+            "Quezon Avenue": [990.00, 209.850],
+            "GMA Kamuning": [990.00, 259.850],
+            "Araneta Center-Cubao": [990.00, 294.85],
+            "Santolan-Annapolis": [991.00, 355.85],
+            "Ortigas": [989.00, 403.85],
+            "Shaw Boulevard": [940.00, 428.85],
+            "Boni": [745.00, 451.85],
+            "Guadalupe": [648.00, 477.85],
+            "Buendia": [552.00, 525.85],
+            "Ayala": [452.00, 525.85],
+            "Magallanes": [356.00, 522.85],
+            "Taft Avenue": [257.00, 525.85],
         };
 
         const threshold = 10; // Allowable distance from the exact coordinates
         const fromInput = document.getElementById('from-station');
         const toInput = document.getElementById('to-station');
         const outputContainer = document.getElementById('output-container');
+        const outputText = document.getElementById('output-text');
 
         let clickCount = 0;
 
@@ -152,9 +154,39 @@
             fromInput.value = '';
             toInput.value = '';
             clickCount = 0;
+            outputText.textContent = 'Click on the map to select a station.';
             console.log('Inputs reset.');
         });
+
+        // Handle form submission
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const fromStation = fromInput.value;
+            const toStation = toInput.value;
+
+            if (!fromStation || !toStation) {
+                outputText.textContent = 'Both "From" and "To" stations must be selected.';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('from_station', fromStation);
+            formData.append('to_station', toStation);
+
+            fetch('/graph', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                outputText.innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                outputText.textContent = 'An error occurred while finding the path.';
+            });
+        });
     </script>
-    
 </body>
 </html>
