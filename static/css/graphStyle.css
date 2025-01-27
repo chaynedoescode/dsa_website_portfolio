@@ -131,7 +131,7 @@ iframe {
 
 }
 #form-container {
-  flex: 2; /* Occupy 2/3 of the space */
+  flex: 1; /* Occupy 2/3 of the space */
   padding: 10px;
   border-right: 1px solid #ccc;
   margin-left: 20px; /* Move to the right */
@@ -159,6 +159,7 @@ iframe {
   margin-left: 20px; /* Move to the right */
   margin-top: -69px;
   z-index: 1;
+  overflow-y: auto;
 }
 #output-container p {
   margin: 0;
