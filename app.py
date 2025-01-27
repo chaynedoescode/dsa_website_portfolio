@@ -130,7 +130,7 @@ def queue_view():
 
 @app.route('/binary_tree')
 def tree():
-    return render_template('binary_tree.html')
+    return render_template('index.html')
 
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
