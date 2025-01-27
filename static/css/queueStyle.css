@@ -103,10 +103,12 @@ body {
   
 
 .main-container {
-    flex: 1;
-    justify-content: center; /* Center the sections horizontally */
-    max-height: 1200px; /* Adjust height */
+    display: flex;
+    justify-content: space-between; /* Space between sections */
+    align-items: flex-start; /* Align sections at the top */
+    gap: 10px; /* Add space between sections */
     padding: 30px;
+    box-sizing: border-box;
   }  
   
 /* Main container for alignment */
@@ -115,7 +117,6 @@ body {
   max-width: 800px; 
   max-height: 1000px;
   padding: 20px;  
-  box-sizing: border-box;
 
 }
 
@@ -150,7 +151,9 @@ div > section {
     border-radius: 10px;
     width: 200%;
     max-width: 200%;
-    margin-left: 335px;
+    margin-left: 100px;
+    width: 650px;
+    margin: 0;
     
 }
 
