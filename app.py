@@ -132,45 +132,47 @@ def queue_view():
 
 @app.route('/binary_tree', methods=['GET', 'POST'])
 def binary_tree_view():
-    success_message = None
-    if request.method == 'POST':
-        action = request.form.get('action')
-        value = request.form.get('value')
-        parent_value = request.form.get('parent_value')
-        direction = request.form.get('direction')
+    return render_template("index.html")
+    # success_message = None
+    # if request.method == 'POST':
+    #     action = request.form.get('action')
+    #     value = request.form.get('value')
+    #     parent_value = request.form.get('parent_value')
+    #     direction = request.form.get('direction')
 
-        if action == 'create_tree':
-            binary_tree.create_tree(value)
-            success_message = "Tree created with root value " + value
-        elif action == 'add_node':
-            if binary_tree.add_node(parent_value, value, direction):
-                success_message = f"Node with value {value} added to the {direction} of {parent_value}"
-            else:
-                success_message = f"Parent node with value {parent_value} not found"
-        elif action == 'delete_node':
-            binary_tree.delete_node(value)
-            success_message = f"Node with value {value} deleted"
-        elif action == 'reset_tree':
-            binary_tree.reset_tree()
-            success_message = "Tree reset"
-        if action in ['create_tree', 'add_node', 'delete_node', 'reset_tree']:
-            dot = binary_tree.generate_graph()
-            dot.render('static/binary_tree', format='png', cleanup=True)
-        elif action == 'inorder_traversal':
-            traversal = binary_tree.inorder_traversal(binary_tree.root, "")
-            success_message = f"Inorder Traversal: {traversal}"
-        elif action == 'preorder_traversal':
-            traversal = binary_tree.preorder_traversal(binary_tree.root, "")
-            success_message = f"Preorder Traversal: {traversal}"
-        elif action == 'postorder_traversal':
-            traversal = binary_tree.postorder_traversal(binary_tree.root, "")
-            success_message = f"Postorder Traversal: {traversal}"
+    #     if action == 'create_tree':
+    #         binary_tree.create_tree(value)
+    #         success_message = "Tree created with root value " + value
+    #     elif action == 'add_node':
+    #         if binary_tree.add_node(parent_value, value, direction):
+    #             success_message = f"Node with value {value} added to the {direction} of {parent_value}"
+    #         else:
+    #             success_message = f"Parent node with value {parent_value} not found"
+    #     elif action == 'delete_node':
+    #         binary_tree.delete_node(value)
+    #         success_message = f"Node with value {value} deleted"
+    #     elif action == 'reset_tree':
+    #         binary_tree.reset_tree()
+    #         success_message = "Tree reset"
+    #     if action in ['create_tree', 'add_node', 'delete_node', 'reset_tree']:
+    #         dot = binary_tree.generate_graph()
+    #         dot.render('static/binary_tree', format='png', cleanup=True)
+    #     elif action == 'inorder_traversal':
+    #         traversal = binary_tree.inorder_traversal(binary_tree.root, "")
+    #         success_message = f"Inorder Traversal: {traversal}"
+    #     elif action == 'preorder_traversal':
+    #         traversal = binary_tree.preorder_traversal(binary_tree.root, "")
+    #         success_message = f"Preorder Traversal: {traversal}"
+    #     elif action == 'postorder_traversal':
+    #         traversal = binary_tree.postorder_traversal(binary_tree.root, "")
+    #         success_message = f"Postorder Traversal: {traversal}"
 
-    return render_template('binary_tree.html', success_message=success_message)
+    # return render_template('binary_tree.html', success_message=success_message)
 
 @app.route('/binary_tree_image')
 def binary_tree_image():
-    return send_file('static/binary_tree.png', mimetype='image/png')
+    # return send_file('static/binary_tree.png', mimetype='image/png')
+    return render_template("index.html")
 
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
