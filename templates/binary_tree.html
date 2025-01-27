@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree Operations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/queueStyle.css') }}">
+    <style>
+        /* Additional styles to ensure the iframe fits well */
+        #left-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        iframe {
+            width: 200%; /* Adjust the width as needed */
+            height: 400px; /* Adjust the height as needed */
+            border: none;
+        }
+    </style>
+    <script>
+        function submitForm(action) {
+            const form = document.getElementById('binaryTreeForm');
+            const actionInput = document.createElement('input');
+            actionInput.type = 'hidden';
+            actionInput.name = 'action';
+            actionInput.value = action;
+            form.appendChild(actionInput);
+            form.submit();
+        }
+
+        function reloadImage() {
+            const img = document.getElementById('binaryTreeImage');
+            img.src = img.src.split('?')[0] + '?' + new Date().getTime();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Enginuity Logo" class="header-logo">
+        <h1><b>Enginuity: Crafting Tomorrow with the Genius of Today</b></h1>
+        <nav>
+            <button onclick="document.location='/#home'">Home</button>
+            <button onclick="document.location='/#about-us'">About Us</button>
+            <button onclick="document.location='/#works'">Works</button>
+        </nav>
+    </header>
+
+    <div id="left-container">
+        <h1>Binary Tree Operations</h1>
+        <form id="binaryTreeForm" method="POST" action="/binary_tree" onsubmit="reloadImage()">
+            <label for="value">Value:</label>
+            <input type="text" id="value" name="value" required>
+            <br><br>
+            <label for="parent_value">Parent Value:</label>
+            <input type="text" id="parent_value" name="parent_value">
+            <br><br>
+            <label for="direction">Direction:</label>
+            <select id="direction" name="direction">
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+            </select>
+            <br><br>
+            <button type="submit" name="action" value="create_tree">Create Tree</button>
+            <button type="submit" name="action" value="add_node">Add Node</button>
+            <button type="submit" name="action" value="delete_node">Delete Node</button>
+            <button type="button" onclick="submitForm('reset_tree')">Reset Tree</button>
+            <button type="button" onclick="submitForm('inorder_traversal')">Inorder Traversal</button>
+            <button type="button" onclick="submitForm('preorder_traversal')">Preorder Traversal</button>
+            <button type="button" onclick="submitForm('postorder_traversal')">Postorder Traversal</button>
+        </form>
+        <br>
+        {% if success_message %}
+            <p>{{ success_message }}</p>
+        {% endif %}
+        <img id="binaryTreeImage" src="{{ url_for('binary_tree_image') }}" alt="Binary Tree Image">
+    </div>
+</body>
+</html>

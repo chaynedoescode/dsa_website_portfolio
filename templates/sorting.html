@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ENGINUITY - SORTING</title>
+    <link rel="stylesheet" href="../static/css/sortingStyle.css" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="../static/images/icon.png"
+        alt="Enginuity Logo"
+        class="header-logo"
+      />
+      <h1><b>Enginuity: Crafting Tomorrow with the Genius of Today</b></h1>
+      <nav>
+        <button onclick="document.location='/#home'">Home</button>
+        <button onclick="document.location='/#about-us'">About Us</button>
+        <button onclick="document.location='/#works'">Works</button>
+      </nav>
+    </header>
+    <h1>Bar Graph</h1>
+<div class="chart-container" id="chart-container">
+  <!-- Bars will be added here dynamically -->
+</div>
+
+<script>
+  // Example list of values
+  const data = [50, 75, 100, 125, 150];
+
+  // Chart container
+  const chartContainer = document.getElementById('chart-container');
+
+  // Generate bars
+  data.forEach(value => {
+    const bar = document.createElement('div');
+    bar.classList.add('bar');
+    bar.style.height = `${value}px`;
+    bar.innerHTML = `<span>${value}</span>`;
+    chartContainer.appendChild(bar);
+  });
+</script>
+
+</body>
+</html>
+</html

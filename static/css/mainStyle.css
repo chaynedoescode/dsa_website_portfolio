@@ -105,7 +105,7 @@ nav button {
 
 /* HOME */
 #home {
-  background-color: #f0f0f0;
+  background-color: transparent;
   padding: 40px 20px;
   min-height: 100px;
   padding-top: 200px;
@@ -157,9 +157,50 @@ right: 25px;
 top: 230px;
 }
 
+.blob {
+  position: fixed; /* Ensure it stays in one place relative to the viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 420px;
+  background: linear-gradient(
+    47deg,
+    #191970 21%,
+    #6495ED 67%,
+    #00FFFF 81%
+  );
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate;
+  filter: blur(40px);
+  z-index: 0; /* Ensure it's behind other content */
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
+    border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(-30deg);
+    border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+  }
+}
+
+.container {
+  position: relative; /* Keep content above the blob */
+  z-index: 1;
+}
+
+
 /* ABOUT US */
 #about-us {
-background-color: #f0f0f0;
+background-color: transparent;
 padding: 40px 20px;
 min-height: 300px;
 padding-top: 10px;
@@ -248,51 +289,6 @@ color: #555;
 }
 }
 
-/* Modal Styles */
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 10; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0, 0, 0, 0.8); 
-}
-
-.modal-content {
-  background-color: white;
-  margin: 15% auto; 
-  padding: 20px;
-  border-radius: 8px;
-  width: 50%;
-  text-align: center;
-  animation: fadeIn 0.5s;
-}
-
-.modal-content h2 {
-  font-size: 24px;
-}
-
-.modal-content p {
-  font-size: 18px;
-  color: #555;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-}
-
-.close:hover {
-  color: red;
-}
 
 /* Image hover effect */
 .gallery img {
@@ -317,9 +313,10 @@ margin-bottom: 20px;
 text-align: center;
 }
 
+
 /* WORKS */
 #works {
-background-color: #f0f0f0;
+background-color: transparent;
 padding: 40px 20px;
 min-height: 300px;
 text-align: center;
@@ -428,19 +425,31 @@ footer .contact-icons img {
   margin: 15% auto; 
   padding: 20px;
   border-radius: 8px;
-  width: 80%;
-  height: 50%;
+  width: 800px;
+  max-width: 800px;
   text-align: center;
   animation: fadeIn 0.5s;
 }
 
 .modal-content h2 {
   font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.modal-content p {
-  font-size: 18px;
-  color: #555;
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.video-container video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
 .close {
@@ -472,4 +481,4 @@ footer .contact-icons img {
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
-
+/* MODAL VIDS*/

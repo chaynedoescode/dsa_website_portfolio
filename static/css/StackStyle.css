@@ -27,7 +27,7 @@ header {
 }
 
 .header-logo {
-  width: 30px;
+  width: 50px;
   height: auto;
 }
 
@@ -108,38 +108,42 @@ nav button:hover {
 /* Flex container to align input, button, and output */
 .flex-container {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0 auto;
-  margin-top: 100px; /* Adjust as needed for vertical centering */
-  gap: 40px; /* Space between input and output sections */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+  height: 100vh; 
+  margin-left: 240px;
+  margin-top: -100px;
 }
 
 /* Input Section */
 .input-section {
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* Stretch input and button to full width */
-  width: 600px; /* Make the input section wider */
-  margin-left: 0px; /* Adjust left margin for input section */
+  align-items: stretch; 
+  width: 800px;
+  margin-left: 0px; 
   margin-right: 200px;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 /* Input Area */
 #input-area {
-  width: 100%;
-  padding: 15px; /* Increase padding for larger input field */
+  width: 80%; /* Adjust width */
+  max-width: 800px; /* Optional: Set a max width */
+  height: 60px; /* Set desired height */
+  padding: 15px; /* Padding for better spacing */
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box;
-  margin-bottom: 10px; /* Add space between input and button */
+  margin-bottom: 20px; /* Space between input and output */
+  box-sizing: border-box; /* Add space between input and button */
 }
 
 /* Button Container */
 .button-container {
   text-align: center; /* Center the button */
+  width: 640px;
 }
 
 /* Buttons in the container */
@@ -151,6 +155,7 @@ nav button:hover {
   border-radius: 5px;
   background-color: #f4f4f4;
   cursor: pointer;
+  
 }
 
 .button-container button:hover {
@@ -158,16 +163,18 @@ nav button:hover {
 }
 
 .output-section {
-  width: 400px; /* Match width with the input section */
+  width: 800px; /* Match width with the input section */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 195px;
+  margin-top: -50px;
 }
 
 /* Output Area */
 #output-area {
   width: 100%;
-  max-width: 400px; /* Keep the same width */
+  max-width: 800px; /* Keep the same width */
   padding: 15px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -178,7 +185,6 @@ nav button:hover {
   overflow-y: auto; /* Add scroll if content overflows */
   white-space: pre-wrap; /* Preserve whitespace and line breaks */
 }
-
 
 /* Success Indicator styling */
 #success-indicator {

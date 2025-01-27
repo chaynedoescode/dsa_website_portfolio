@@ -1,25 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ENGINUITY - LINKED LIST</title>
-    <link rel="stylesheet" href="../static/css/graphStyle.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Map</title>
+    <link rel="stylesheet" href="../static/css/graphStyle.css">
+</head>
+<body>
     <header>
-      <img
-        src="../static/images/icon.png"
-        alt="Enginuity Logo"
-        class="header-logo"
-      />
-      <h1><b>Enginuity: Crafting Tomorrow with the Genius of Today</b></h1>
-      <nav>
-        <button onclick="document.location='/#home'">Home</button>
-        <button onclick="document.location='/#about-us'">About Us</button>
-        <button onclick="document.location='/#works'">Works</button>
-      </nav>
+        <div class="header-logo-text">
+            <img src="../static/images/icon.png" alt="Enginuity Logo" class="header-logo">
+            <h1><b>Enginuity: Crafting Tomorrow with the Genius of Today</b></h1>
+        </div>
+        <nav>
+            <button onclick="document.location='/#home'">Home</button>
+            <button onclick="document.location='/#about-us'">About Us</button>
+            <button onclick="document.location='/#works'">Works</button>
+        </nav>
     </header>
+    <main style="display: flex; flex-direction: column; height: 100vh;">
+        <!-- Top container for the map -->
+        <div id="top-container">
+            <iframe id="rail-map" src="{{ url_for('static', filename='rail_map_with_interchanges.html') }}"></iframe>
+        </div>
 
-  </body>
+        <!-- Bottom container -->
+        <div id="bottom-container">
+            <!-- Form container -->
+            <div id="form-container">
+                <form id="station-form" action="/graph" method="POST">
+                    <div class="input-group">
+                        <input type="text" id="from-station" name="from_station" placeholder="From:" readonly>
+                        <button type="submit" id="submit-button" name="action" value="submit">Submit</button>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="to-station" name="to_station" placeholder="To:" readonly>
+                        <button type="button" id="reset-button">Reset</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Output container -->
+            <div id="output-container">
+                <p>Click on the map to collect coordinates. Debugging markers will appear.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const outputContainer = document.getElementById('output-container');
+
+        document.getElementById('rail-map').addEventListener('load', () => {
+            const iframe = document.getElementById('rail-map');
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+            // Listen for clicks inside the iframe to collect coordinates
+            iframeDocument.addEventListener('click', (event) => {
+                const rect = iframe.getBoundingClientRect();
+
+                // Calculate the click coordinates relative to the map
+                const clickX = event.clientX - rect.left;
+                const clickY = event.clientY - rect.top;
+
+                // Display the collected coordinates
+                console.log(`Collected Coordinates: (${clickX.toFixed(2)}, ${clickY.toFixed(2)})`);
+                const coordDisplay = document.createElement('p');
+                coordDisplay.textContent = `Coordinates: (${clickX.toFixed(2)}, ${clickY.toFixed(2)})`;
+                outputContainer.appendChild(coordDisplay);
+            });
+        });
+
+        // Handle Reset Button
+        document.getElementById('reset-button').addEventListener('click', () => {
+            outputContainer.innerHTML = '<p>Click on the map to collect coordinates.</p>';
+            console.log('Output reset.');
+        });
+    </script>
+</body>
 </html>
