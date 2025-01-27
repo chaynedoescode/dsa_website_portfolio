@@ -186,5 +186,8 @@ def graph():
             return "No path found between the given stations."
     return render_template('graphh.html', output_text='Click on the map to select a station.')
 
+@app.route('/sorting')
+def sorting():
+    return render_template('sorting.html')
 if __name__ == '__main__':
     app.run(debug=True)
