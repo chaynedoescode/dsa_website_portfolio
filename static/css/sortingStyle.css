@@ -101,111 +101,94 @@ body {
     text-decoration: underline;
   }
   
-
-.main-container {
-    display: flex;
-    justify-content: space-between; /* Space between sections */
-    align-items: flex-start; /* Align sections at the top */
-    gap: 10px; /* Add space between sections */
-    padding: 30px;
-    box-sizing: border-box;
-  }  
+  .container {
+    padding: 20px;
+  }
   
-/* Main container for alignment */
-.main-container section {
-  flex: 1; 
-  max-width: 800px; 
-  max-height: 1000px;
-  padding: 20px;  
-
-}
-
-/* Input and button styling */
-.main-container section textarea,
-.main-container section button {
-  width: 100%; 
-  margin-bottom: 10px; 
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box;
-
-}
-
-/* Styling for the output display */
-.main-container section .output {
-  width: 100%; 
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  font-family: monospace;
-  box-sizing: border-box;
-}
-
-/* Section container styling */
-div > section {
-    flex: 1;
+  
+  /* Input Area */
+  #input-area {
+    width: 100%;
+    max-width: 400px;
     padding: 10px;
+    margin: 20px auto;  
+    margin-top: 40px; /*pang gitna*/
+    display: block;
+    font-size: 16px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Output Area */
+  #output-area {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
+    font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 200%;
-    max-width: 200%;
-    margin-left: 100px;
-    width: 650px;
-    margin: 0;
-    
-}
-
-/* Header styling */
-.enqueue-header,
-.dequeue-header {
-    display: flow-root;
-    justify-content: center; /* Center align header text */
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Button Container */
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px; 
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  
+  /* Buttons in the container */
+  .button-container button {
+    width: 30%; 
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+  }
+  
+  /* Button hover effect */
+  .button-container button:hover {
+    background-color: #ddd;
+  }
+  
+  .form-header {
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
-}
-
-/* Textarea styling */
-textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-}
-
-/* Specific styles for output area */
-textarea#output-area {
-    height: 100px; /* Adjust output area height */
-    background-color: #f9f9f9;
-    overflow-y: auto; /* Scroll if content overflows */
-}
-
-/* Button container styles */
-.button-container {
+    margin-top: 80px; /* Increases space from the top */
+    margin-bottom: 20px; /* Space between header and input */
+    color: #333;
+  }
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .chart-container {
     display: flex;
-    flex-direction: column; /* Arrange buttons vertically */
-    gap: 10px; /* Space between buttons */
-    margin-bottom: 15px;
-}
-
-button {
+    align-items: flex-end;
+    gap: 10px;
+    height: 300px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: 20px;
     padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
+  }
+  .bar {
+    background-color: #4CAF50;
+    width: 40px;
     text-align: center;
-}
-
-button:hover {
-    background-color: #ddd;
-}
-
-
-
-  
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .bar span {
+    margin-bottom: 5px;
+  }
