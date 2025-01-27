@@ -1,4 +1,4 @@
-from PrettyPrint import PrettyPrintTree
+from graphviz import Digraph
 
 class Node:
     def __init__(self, value):
@@ -7,24 +7,69 @@ class Node:
         self.right = None
 
 class BinaryTree:
-    def __init__(self, root_value):
+    def __init__(self):
+        self.root = None
+
+    def create_tree(self, root_value):
         self.root = Node(root_value)
 
-    def insert_left(self, current_node, value):
-        if current_node.left is None:
-            current_node.left = Node(value)
-        else:
-            new_node = Node(value)
-            new_node.left = current_node.left
-            current_node.left = new_node
+    def add_node(self, parent_value, new_value, direction):
+        parent_node = self.find_node(self.root, parent_value)
+        if not parent_node:
+            return False
+        new_node = Node(new_value)
+        if direction == 'left':
+            if parent_node.left is None:
+                parent_node.left = new_node
+            else:
+                new_node.left = parent_node.left
+                parent_node.left = new_node
+        elif direction == 'right':
+            if parent_node.right is None:
+                parent_node.right = new_node
+            else:
+                new_node.right = parent_node.right
+                parent_node.right = new_node
+        return True
 
-    def insert_right(self, current_node, value):
-        if current_node.right is None:
-            current_node.right = Node(value)
+    def find_node(self, start, value):
+        if start is None:
+            return None
+        if start.value == value:
+            return start
+        left_result = self.find_node(start.left, value)
+        if left_result:
+            return left_result
+        return self.find_node(start.right, value)
+
+    def delete_node(self, value):
+        self.root = self._delete_node_rec(self.root, value)
+
+    def _delete_node_rec(self, node, value):
+        if node is None:
+            return node
+        if value < node.value:
+            node.left = self._delete_node_rec(node.left, value)
+        elif value > node.value:
+            node.right = self._delete_node_rec(node.right, value)
         else:
-            new_node = Node(value)
-            new_node.right = current_node.right
-            current_node.right = new_node
+            if node.left is None:
+                return node.right
+            elif node.right is None:
+                return node.left
+            temp = self.get_min(node.right)
+            node.value = temp.value
+            node.right = self._delete_node_rec(node.right, temp.value)
+        return node
+
+    def get_min(self, node):
+        current = node
+        while current.left is not None:
+            current = current.left
+        return current
+
+    def reset_tree(self):
+        self.root = None
 
     def inorder_traversal(self, start, traversal):
         if start:
@@ -33,58 +78,31 @@ class BinaryTree:
             traversal = self.inorder_traversal(start.right, traversal)
         return traversal
 
-    def get_min(self, node):
-        current = node
-        while current.left is not None:
-            current = current.left
-        return current
+    def preorder_traversal(self, start, traversal):
+        if start:
+            traversal += (str(start.value) + '-')
+            traversal = self.preorder_traversal(start.left, traversal)
+            traversal = self.preorder_traversal(start.right, traversal)
+        return traversal
 
-    def create_expression_tree(self, expression):
-        stack = []
-        operators = {'+', '-', '*', '/'}
-        
-        for token in expression:
-            node = Node(token)
-            if token in operators:
-                # Operator node: pop two operands and attach them
-                node.right = stack.pop()
-                node.left = stack.pop()
-            stack.append(node)
-            
-        self.root = stack[0]
-        return self.root
+    def postorder_traversal(self, start, traversal):
+        if start:
+            traversal = self.postorder_traversal(start.left, traversal)
+            traversal = self.postorder_traversal(start.right, traversal)
+            traversal += (str(start.value) + '-')
+        return traversal
 
-    def evaluate_expression(self, node):
-        if node is None:
-            return 0
-        
-        # Leaf node (operand)
-        if node.left is None and node.right is None:
-            return float(node.value)
-        
-        # Evaluate left and right subtrees
-        left_val = self.evaluate_expression(node.left)
-        right_val = self.evaluate_expression(node.right)
-        
-        # Apply operator
-        if node.value == '+':
-            return left_val + right_val
-        elif node.value == '-':
-            return left_val - right_val
-        elif node.value == '*':
-            return left_val * right_val
-        elif node.value == '/':
-            return left_val / right_val
+    def generate_graph(self):
+        dot = Digraph()
+        self._add_nodes_edges(self.root, dot)
+        return dot
 
-pt = PrettyPrintTree(lambda x: [child for child in (x.left, x.right) if child], lambda x: x.value if x else None)
-tree = BinaryTree(1)
-tree.insert_left(tree.root, 6)
-tree.insert_right(tree.root, 3)
-tree.insert_left(tree.root.left, 2)  # Node 2 is the left child of Node 6
-tree.insert_right(tree.root.left, 5) # Node 5 is the right child of Node 6
-tree.insert_left(tree.root.left.left, 4) # Node 4 is the left child of Node 2
-tree.insert_right(tree.root.right, 7) # Node 7 is the right child of Node 3
-tree.insert_left(tree.root.right, 8) # Node 8 is the left child of Node 3
-
-print("\nFancy Tree Structure:")
-pt(tree.root)
+    def _add_nodes_edges(self, node, dot):
+        if node:
+            dot.node(str(node.value))
+            if node.left:
+                dot.edge(str(node.value), str(node.left.value))
+                self._add_nodes_edges(node.left, dot)
+            if node.right:
+                dot.edge(str(node.value), str(node.right.value))
+                self._add_nodes_edges(node.right, dot)

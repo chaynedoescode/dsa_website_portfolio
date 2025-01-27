@@ -1,13 +1,15 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from linked_list import LinkedList
 from stack import Stack, precedence, infix_to_postfix
 from q import Queue, Dequeue
 from graph import G, find_shortest_path
+from binary_tree import BinaryTree
 
 app = Flask(__name__)
 linked_list = LinkedList()
 queue = Queue()
 dequeue = Dequeue()
+binary_tree = BinaryTree()
 
 @app.route('/')
 def home():
@@ -128,9 +130,47 @@ def queue_view():
 
     return render_template('queue.html', queue_message=queue_message, dequeue_message=dequeue_message)
 
-@app.route('/binary_tree')
-def tree():
-    return render_template('binary_tree.html')
+@app.route('/binary_tree', methods=['GET', 'POST'])
+def binary_tree_view():
+    success_message = None
+    if request.method == 'POST':
+        action = request.form.get('action')
+        value = request.form.get('value')
+        parent_value = request.form.get('parent_value')
+        direction = request.form.get('direction')
+
+        if action == 'create_tree':
+            binary_tree.create_tree(value)
+            success_message = "Tree created with root value " + value
+        elif action == 'add_node':
+            if binary_tree.add_node(parent_value, value, direction):
+                success_message = f"Node with value {value} added to the {direction} of {parent_value}"
+            else:
+                success_message = f"Parent node with value {parent_value} not found"
+        elif action == 'delete_node':
+            binary_tree.delete_node(value)
+            success_message = f"Node with value {value} deleted"
+        elif action == 'reset_tree':
+            binary_tree.reset_tree()
+            success_message = "Tree reset"
+        if action in ['create_tree', 'add_node', 'delete_node', 'reset_tree']:
+            dot = binary_tree.generate_graph()
+            dot.render('static/binary_tree', format='png', cleanup=True)
+        elif action == 'inorder_traversal':
+            traversal = binary_tree.inorder_traversal(binary_tree.root, "")
+            success_message = f"Inorder Traversal: {traversal}"
+        elif action == 'preorder_traversal':
+            traversal = binary_tree.preorder_traversal(binary_tree.root, "")
+            success_message = f"Preorder Traversal: {traversal}"
+        elif action == 'postorder_traversal':
+            traversal = binary_tree.postorder_traversal(binary_tree.root, "")
+            success_message = f"Postorder Traversal: {traversal}"
+
+    return render_template('binary_tree.html', success_message=success_message)
+
+@app.route('/binary_tree_image')
+def binary_tree_image():
+    return send_file('static/binary_tree.png', mimetype='image/png')
 
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
@@ -146,5 +186,8 @@ def graph():
             return "No path found between the given stations."
     return render_template('graphh.html', output_text='Click on the map to select a station.')
 
+@app.route('/sorting')
+def sorting():
+    return render_template('sorting.html')
 if __name__ == '__main__':
     app.run(debug=True)
