@@ -167,3 +167,28 @@ body {
     margin-bottom: 20px; /* Space between header and input */
     color: #333;
   }
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .chart-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 300px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: 20px;
+    padding: 10px;
+  }
+  .bar {
+    background-color: #4CAF50;
+    width: 40px;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .bar span {
+    margin-bottom: 5px;
+  }
