@@ -141,14 +141,12 @@ def queue_view():
 
 @app.route('/binary_tree', methods=['GET', 'POST'])
 def binary_tree_view():
-
     success_message = None
     if request.method == 'POST':
         action = request.form.get('action')
         value = request.form.get('value')
         parent_value = request.form.get('parent_value')
         direction = request.form.get('direction')
-
         if action == 'create_tree':
             binary_tree.create_tree(value)
             success_message = "Tree created with root value " + value
@@ -173,9 +171,8 @@ def binary_tree_view():
             traversal = binary_tree.preorder_traversal(binary_tree.root, "")
             success_message = f"Preorder Traversal: {traversal}"
         elif action == 'postorder_traversal':
-             traversal = binary_tree.postorder_traversal(binary_tree.root, "")
-             success_message = f"Postorder Traversal: {traversal}"
-
+            traversal = binary_tree.postorder_traversal(binary_tree.root, "")
+            success_message = f"Postorder Traversal: {traversal}"
     return render_template('binary_tree.html', success_message=success_message)
 
 @app.route('/binary_tree_image')
