@@ -93,13 +93,13 @@ class BinaryTree:
         return traversal
 
     def generate_graph(self):
-        dot = Digraph()
+        dot = Digraph(node_attr={'style': 'filled', 'fillcolor': 'transparent'})
         self._add_nodes_edges(self.root, dot)
         return dot
 
     def _add_nodes_edges(self, node, dot):
         if node:
-            dot.node(str(node.value))
+            dot.node(str(node.value), style='filled', fillcolor='transparent')
             if node.left:
                 dot.edge(str(node.value), str(node.left.value))
                 self._add_nodes_edges(node.left, dot)

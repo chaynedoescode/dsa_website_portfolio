@@ -103,6 +103,18 @@ nav button {
   padding: 20px;
 }
 
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none; 
+}
+
+
 /* HOME */
 #home {
   background-color: transparent;
@@ -158,40 +170,6 @@ right: 25px;
 top: 230px;
 }
 
-.blob {
-  position: fixed; /* Ensure it stays in one place relative to the viewport */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 420px;
-  height: 420px;
-  background: linear-gradient(
-    47deg,
-    #191970 21%,
-    #6495ED 67%,
-    #00FFFF 81%
-  );
-  opacity: 0.5;
-  border-radius: 50%;
-  animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate;
-  filter: blur(40px);
-  z-index: 0; /* Ensure it's behind other content */
-}
-
-@keyframes animate {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
-    border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.05) rotate(-30deg);
-    border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
-  }
-}
 
 .container {
   position: relative; /* Keep content above the blob */
@@ -350,13 +328,8 @@ text-decoration: none;
 transition: 0.3s ease all;
 z-index: 1;
 cursor: pointer;
-<<<<<<< HEAD
-margin: 27px;
-margin-bottom: 15px;
-=======
 margin: 70px;
 margin-bottom: 5px;
->>>>>>> 8b6a247a8778a7fd70118ac0098c05082bdad525
 height: 120px;
 width: 150px;
 line-height: 120px;

@@ -147,37 +147,59 @@ def binary_tree_view():
         value = request.form.get('value')
         parent_value = request.form.get('parent_value')
         direction = request.form.get('direction')
+
         if action == 'create_tree':
-            binary_tree.create_tree(value)
-            success_message = "Tree created with root value " + value
-        elif action == 'add_node':
-            if binary_tree.add_node(parent_value, value, direction):
-                success_message = f"Node with value {value} added to the {direction} of {parent_value}"
+            if not value:
+                success_message = "Please provide a value to create the root node."
             else:
-                success_message = f"Parent node with value {parent_value} not found"
+                binary_tree.create_tree(value)
+                success_message = f"Tree created with root value {value}"
+        
+        elif action == 'add_node':
+            if not value or not parent_value or not direction:
+                success_message = "Please provide all required values (node, parent, and direction)."
+            else:
+                if binary_tree.add_node(parent_value, value, direction):
+                    success_message = f"Node with value {value} added to the {direction} of {parent_value}"
+                else:
+                    success_message = f"Parent node with value {parent_value} not found"
+        
         elif action == 'delete_node':
-            binary_tree.delete_node(value)
-            success_message = f"Node with value {value} deleted"
+            if not value:
+                success_message = "Please provide a value to delete the node."
+            else:
+                binary_tree.delete_node(value)
+                success_message = f"Node with value {value} deleted"
+        
         elif action == 'reset_tree':
             binary_tree.reset_tree()
-            success_message = "Tree reset"
+            success_message = "Tree reset successfully."
+        
         if action in ['create_tree', 'add_node', 'delete_node', 'reset_tree']:
+            # Generate the graph after node changes
             dot = binary_tree.generate_graph()
+            dot.attr(bgcolor="transparent")  # Ensure the node's background is transparent
             dot.render('static/binary_tree', format='png', cleanup=True)
+        
         elif action == 'inorder_traversal':
             traversal = binary_tree.inorder_traversal(binary_tree.root, "")
-            success_message = f"Inorder Traversal: {traversal}"
+            success_message = f"Inorder Traversal: {traversal.strip('-')}"
+        
         elif action == 'preorder_traversal':
             traversal = binary_tree.preorder_traversal(binary_tree.root, "")
-            success_message = f"Preorder Traversal: {traversal}"
+            success_message = f"Preorder Traversal: {traversal.strip('-')}"
+        
         elif action == 'postorder_traversal':
             traversal = binary_tree.postorder_traversal(binary_tree.root, "")
-            success_message = f"Postorder Traversal: {traversal}"
+            success_message = f"Postorder Traversal: {traversal.strip('-')}"
+
     return render_template('binary_tree.html', success_message=success_message)
+
 
 @app.route('/binary_tree_image')
 def binary_tree_image():
     return send_file('static/binary_tree.png', mimetype='image/png')
+
 
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -182,7 +184,267 @@
     let array = [];
     let delay = 1000 / speedInput.value;
     let stopSorting = false;
+  <script>
+    const barContainer = document.getElementById('barContainer');
+    const arraySizeInput = document.getElementById('arraySize');
+    const newArrayButton = document.getElementById('newArray');
+    const speedInput = document.getElementById('speed');
+    const stopButton = document.getElementById('stopSort');
 
+    let array = [];
+    let delay = 1000 / speedInput.value;
+    let stopSorting = false;
+
+    function generateBars(size = 50) {
+      barContainer.innerHTML = '';
+      array = [];
+      for (let i = 0; i < size; i++) {
+        const value = Math.floor(Math.random() * 100) + 1;
+        array.push(value);
+        const bar = document.createElement('div');
+        bar.style.height = `${value * 4}px`;
+        bar.classList.add('bar');
+        barContainer.appendChild(bar);
+      }
+    }
+
+    function resetSortingState() {
+      stopSorting = true;
+      const bars = document.querySelectorAll('.bar');
+      bars.forEach(bar => {
+        bar.style.backgroundColor = '#555';
+      });
+    }
+
+    async function delayTime() {
+      return new Promise(resolve => setTimeout(resolve, delay));
+    }
+
+    async function swap(bar1, bar2) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const tempHeight = bar1.style.height;
+          bar1.style.height = bar2.style.height;
+          bar2.style.height = tempHeight;
+          resolve();
+        }, delay);
+      });
+    }
+
+    async function bubbleSort() {
+      const bars = document.querySelectorAll('.bar');
+      for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array.length - i - 1; j++) {
+          if (stopSorting) return;
+          bars[j].style.backgroundColor = '#f39c12';
+          bars[j + 1].style.backgroundColor = '#f39c12';
+          if (array[j] > array[j + 1]) {
+            await swap(bars[j], bars[j + 1]);
+            [array[j], array[j + 1]] = [array[j + 1], array[j]];
+          }
+          bars[j].style.backgroundColor = '#555';
+          bars[j + 1].style.backgroundColor = '#555';
+        }
+      }
+    }
+
+    async function selectionSort() {
+      const bars = document.querySelectorAll('.bar');
+      for (let i = 0; i < array.length; i++) {
+        let minIdx = i;
+        bars[minIdx].style.backgroundColor = '#f39c12';
+        for (let j = i + 1; j < array.length; j++) {
+          if (stopSorting) return;
+          bars[j].style.backgroundColor = '#f39c12';
+          if (array[j] < array[minIdx]) {
+            bars[minIdx].style.backgroundColor = '#555';
+            minIdx = j;
+            bars[minIdx].style.backgroundColor = '#f39c12';
+          } else {
+            bars[j].style.backgroundColor = '#555';
+          }
+        }
+        if (minIdx !== i) {
+          await swap(bars[i], bars[minIdx]);
+          [array[i], array[minIdx]] = [array[minIdx], array[i]];
+        }
+        bars[minIdx].style.backgroundColor = '#555';
+        bars[i].style.backgroundColor = '#2ecc71';
+      }
+    }
+
+    async function insertionSort() {
+      const bars = document.querySelectorAll('.bar');
+      for (let i = 1; i < array.length; i++) {
+        let j = i;
+        while (j > 0 && array[j] < array[j - 1]) {
+          if (stopSorting) return;
+          bars[j].style.backgroundColor = '#f39c12';
+          bars[j - 1].style.backgroundColor = '#f39c12';
+          await swap(bars[j], bars[j - 1]);
+          [array[j], array[j - 1]] = [array[j - 1], array[j]];
+          bars[j].style.backgroundColor = '#555';
+          bars[j - 1].style.backgroundColor = '#555';
+          j--;
+        }
+        bars[j].style.backgroundColor = '#2ecc71';
+      }
+    }
+
+    async function mergeSortHelper(start, end) {
+      if (start >= end) return;
+      const mid = Math.floor((start + end) / 2);
+      await mergeSortHelper(start, mid);
+      await mergeSortHelper(mid + 1, end);
+      const bars = document.querySelectorAll('.bar');
+      const tempArray = [];
+      let i = start, j = mid + 1;
+      while (i <= mid && j <= end) {
+        if (stopSorting) return;
+        bars[i].style.backgroundColor = '#f39c12';
+        bars[j].style.backgroundColor = '#f39c12';
+        await delayTime();
+        if (array[i] <= array[j]) {
+          tempArray.push(array[i]);
+          i++;
+        } else {
+          tempArray.push(array[j]);
+          j++;
+        }
+      }
+      while (i <= mid) {
+        tempArray.push(array[i++]);
+      }
+      while (j <= end) {
+        tempArray.push(array[j++]);
+      }
+      for (let k = start; k <= end; k++) {
+        if (stopSorting) return;
+        array[k] = tempArray[k - start];
+        bars[k].style.height = `${array[k] * 4}px`;
+        bars[k].style.backgroundColor = '#2ecc71';
+        await delayTime();
+      }
+    }
+
+    async function mergeSort() {
+      await mergeSortHelper(0, array.length - 1);
+    }
+
+    async function quickSortHelper(start, end) {
+      if (start >= end) return;
+      const bars = document.querySelectorAll('.bar');
+      let pivotIdx = start;
+      bars[pivotIdx].style.backgroundColor = '#f39c12';
+      let left = start + 1;
+      let right = end;
+      while (left <= right) {
+        if (stopSorting) return;
+        while (left <= end && array[left] <= array[pivotIdx]) left++;
+        while (right > start && array[right] >= array[pivotIdx]) right--;
+        if (left < right) {
+          await swap(bars[left], bars[right]);
+          [array[left], array[right]] = [array[right], array[left]];
+        }
+      }
+      await swap(bars[pivotIdx], bars[right]);
+      [array[pivotIdx], array[right]] = [array[right], array[pivotIdx]];
+      pivotIdx = right;
+      bars[pivotIdx].style.backgroundColor = '#2ecc71';
+      await quickSortHelper(start, pivotIdx - 1);
+      await quickSortHelper(pivotIdx + 1, end);
+    }
+
+    async function quickSort() {
+      await quickSortHelper(0, array.length - 1);
+    }
+
+    async function heapify(size, i) {
+      const bars = document.querySelectorAll('.bar');
+      let largest = i;
+      const left = 2 * i + 1;
+      const right = 2 * i + 2;
+
+      if (left < size && array[left] > array[largest]) largest = left;
+      if (right < size && array[right] > array[largest]) largest = right;
+
+      if (largest !== i) {
+        await swap(bars[i], bars[largest]);
+        [array[i], array[largest]] = [array[largest], array[i]];
+        await heapify(size, largest);
+      }
+    }
+
+    async function heapSort() {
+      const bars = document.querySelectorAll('.bar');
+      const size = array.length;
+
+      for (let i = Math.floor(size / 2) - 1; i >= 0; i--) {
+        await heapify(size, i);
+      }
+
+      for (let i = size - 1; i > 0; i--) {
+        await swap(bars[0], bars[i]);
+        [array[0], array[i]] = [array[i], array[0]];
+        await heapify(i, 0);
+        bars[i].style.backgroundColor = '#2ecc71';
+      }
+      bars[0].style.backgroundColor = '#2ecc71';
+    }
+
+    newArrayButton.addEventListener('click', () => {
+      resetSortingState();
+      generateBars(arraySizeInput.value);
+    });
+
+    arraySizeInput.addEventListener('input', () => {
+      generateBars(arraySizeInput.value);
+    });
+
+    speedInput.addEventListener('input', () => {
+      delay = 1000 / speedInput.value;
+    });
+
+    stopButton.addEventListener('click', resetSortingState);
+
+    document.getElementById('bubbleSort').addEventListener('click', () => {
+      resetSortingState();
+      stopSorting = false;
+      bubbleSort();
+    });
+
+    document.getElementById('selectionSort').addEventListener('click', () => {
+      resetSortingState();
+      stopSorting = false;
+      selectionSort();
+    });
+
+    document.getElementById('insertionSort').addEventListener('click', () => {
+      resetSortingState();
+      stopSorting = false;
+      insertionSort();
+    });
+
+    document.getElementById('mergeSort').addEventListener('click', () => {
+      resetSortingState();
+      stopSorting = false;
+      mergeSort();
+    });
+
+    document.getElementById('quickSort').addEventListener('click', () => {
+      resetSortingState();
+      stopSorting = false;
+      quickSort();
+    });
+
+    document.getElementById('heapSort').addEventListener('click', () => {
+      resetSortingState();
+      stopSorting = false;
+      heapSort();
+    });
+
+    generateBars();
+  </script>
     function generateBars(size = 50) {
       barContainer.innerHTML = '';
       array = [];
