@@ -104,7 +104,16 @@ nav button:hover {
 .container {
   padding: 20px;
 }
-
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none; 
+}
 html, body {
   margin: 0;
   padding: 0;

@@ -104,7 +104,16 @@ nav button:hover {
 .container {
   padding: 20px;
 }
-
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none; 
+}
 /* Flex container to align input, button, and output */
 .flex-container {
   display: flex;
@@ -134,7 +143,7 @@ nav button:hover {
   height: 60px; /* Set desired height */
   padding: 15px; /* Padding for better spacing */
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
   border-radius: 5px;
   margin-bottom: 20px; /* Space between input and output */
   box-sizing: border-box; /* Add space between input and button */
@@ -151,7 +160,7 @@ nav button:hover {
   width: 100%; /* Button spans the full width */
   padding: 15px; /* Increase padding for larger button */
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 2px solid #000000;
   border-radius: 5px;
   background-color: #f4f4f4;
   cursor: pointer;
@@ -177,7 +186,7 @@ nav button:hover {
   max-width: 800px; /* Keep the same width */
   padding: 15px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
   border-radius: 5px;
   box-sizing: border-box;
   background-color: #f9f9f9;
