@@ -110,10 +110,9 @@ video {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -1;
-  pointer-events: none; 
+  z-index: -100; /* Lower value to keep it in the background */
+  pointer-events: none;
 }
-
 
 /* HOME */
 #home {
@@ -170,6 +169,40 @@ right: 25px;
 top: 230px;
 }
 
+.blob {
+  position: fixed; /* Ensure it stays in one place relative to the viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 420px;
+  background: linear-gradient(
+    47deg,
+    #191970 21%,
+    #6495ED 67%,
+    #00FFFF 81%
+  );
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate;
+  filter: blur(40px);
+  z-index: 0; /* Ensure it's behind other content */
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
+    border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(-30deg);
+    border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+  }
+}
 
 .container {
   position: relative; /* Keep content above the blob */
@@ -396,20 +429,22 @@ footer .contact-icons img {
 
 /* Modal Styles */
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 10; 
+  display: none;
+  position: fixed;
+  z-index: 1000; /* Ensure it's above everything else */
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0, 0, 0, 0.8); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
+  position: relative; /* Ensures proper stacking context */
+  z-index: 1001; /* Higher than the modal background */
   background-color: white;
-  margin: 15% auto; 
+  margin: 10% auto;
   padding: 20px;
   border-radius: 8px;
   width: 800px;
@@ -418,26 +453,21 @@ footer .contact-icons img {
   animation: fadeIn 0.5s;
 }
 
-.modal-content h2 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
+.video-container {
+  position: relative; /* Ensure it is above the background */
+  z-index: 1002; /* Higher than the modal content */
 }
 
-.video-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-}
 
 .video-container video {
+  position: relative;
+  z-index: 1003; /* Ensure the modal video is above everything */
   width: 100%;
   max-width: 800px;
   border-radius: 8px;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
+
 
 .close {
   position: absolute;
@@ -452,6 +482,7 @@ footer .contact-icons img {
 .close:hover {
   color: red;
 }
+
 
 /* Image hover effect */
 .gallery img {
