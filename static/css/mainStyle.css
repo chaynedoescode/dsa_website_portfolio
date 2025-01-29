@@ -350,8 +350,13 @@ text-decoration: none;
 transition: 0.3s ease all;
 z-index: 1;
 cursor: pointer;
+<<<<<<< HEAD
 margin: 27px;
 margin-bottom: 15px;
+=======
+margin: 70px;
+margin-bottom: 5px;
+>>>>>>> 8b6a247a8778a7fd70118ac0098c05082bdad525
 height: 120px;
 width: 150px;
 line-height: 120px;
