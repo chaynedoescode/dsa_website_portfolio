@@ -11,6 +11,15 @@ queue = Queue()
 dequeue = Dequeue()
 binary_tree = BinaryTree()
 
+def format_path(path):
+    start = f'<span style="color: green; font-weight: bold;">{path[0]}</span>'
+    end = f'<span style="color: red; font-weight: bold;">{path[-1]}</span>'
+    middle = " —► ".join(path[1:-1]) if len(path) > 2 else ""
+    
+    if middle:
+        return f"Shortest path:<br>{start} —► {middle} —► {end}"
+    return f"Shortest path:<br>{start} —► {end}"
+
 @app.route('/')
 def home():
     return render_template('main.html')
@@ -175,6 +184,7 @@ def binary_tree_image():
 
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
+
     if request.method == 'POST':
         from_station = request.form.get('from_station')
         to_station = request.form.get('to_station')
@@ -182,7 +192,7 @@ def graph():
             return f'Both "From" and "To" stations must be provided.'
         path = find_shortest_path(G, from_station, to_station)
         if path:
-            return f"Shortest path: {' —► '.join(path)}"
+            return format_path(path)
         else:
             return "No path found between the given stations."
     return render_template('graphh.html', output_text='Click on the map to select a station.')
