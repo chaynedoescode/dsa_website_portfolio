@@ -56,7 +56,7 @@ header {
   box-sizing: border-box;
   background-color: #f9f9f9;
   text-align: left;  /* Ensure text is left-aligned */
-  height: 50px; /* Adjust the height if needed */
+  height: 100px; /* Adjust the height if needed */
   overflow: hidden; /* Hide excess content */
 }
 

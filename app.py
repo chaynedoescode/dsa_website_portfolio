@@ -11,6 +11,15 @@ queue = Queue()
 dequeue = Dequeue()
 binary_tree = BinaryTree()
 
+def format_path(path):
+    start = f'<span style="color: green; font-weight: bold;">{path[0]}</span>'
+    end = f'<span style="color: red; font-weight: bold;">{path[-1]}</span>'
+    middle = " —► ".join(path[1:-1]) if len(path) > 2 else ""
+    
+    if middle:
+        return f"Shortest path:<br>{start} —► {middle} —► {end}"
+    return f"Shortest path:<br>{start} —► {end}"
+
 @app.route('/')
 def home():
     return render_template('main.html')
@@ -138,7 +147,6 @@ def binary_tree_view():
         value = request.form.get('value')
         parent_value = request.form.get('parent_value')
         direction = request.form.get('direction')
-
         if action == 'create_tree':
             binary_tree.create_tree(value)
             success_message = "Tree created with root value " + value
@@ -165,7 +173,6 @@ def binary_tree_view():
         elif action == 'postorder_traversal':
             traversal = binary_tree.postorder_traversal(binary_tree.root, "")
             success_message = f"Postorder Traversal: {traversal}"
-
     return render_template('binary_tree.html', success_message=success_message)
 
 @app.route('/binary_tree_image')
@@ -174,6 +181,7 @@ def binary_tree_image():
 
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
+
     if request.method == 'POST':
         from_station = request.form.get('from_station')
         to_station = request.form.get('to_station')
@@ -181,13 +189,13 @@ def graph():
             return f'Both "From" and "To" stations must be provided.'
         path = find_shortest_path(G, from_station, to_station)
         if path:
-            return f"Shortest path: {' —► '.join(path)}"
+            return format_path(path)
         else:
             return "No path found between the given stations."
     return render_template('graphh.html', output_text='Click on the map to select a station.')
 
 @app.route('/sorting')
 def sorting():
-    return render_template('sorting.html')
+    return render_template("sorting.html")
 if __name__ == '__main__':
     app.run(debug=True)

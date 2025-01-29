@@ -103,10 +103,13 @@ body {
   
 
 .main-container {
-    flex: 1;
-    justify-content: center; /* Center the sections horizontally */
-    max-height: 1200px; /* Adjust height */
+    display: flex;
+    justify-content: space-between; /* Space between sections */
+    align-items: flex-start; /* Align sections at the top */
+    gap: 10px; /* Add space between sections */
     padding: 30px;
+    box-sizing: border-box;
+    margin-top: -30px;
   }  
   
 /* Main container for alignment */
@@ -115,7 +118,7 @@ body {
   max-width: 800px; 
   max-height: 1000px;
   padding: 20px;  
-  box-sizing: border-box;
+  height: 500px;
 
 }
 
@@ -132,16 +135,6 @@ body {
 
 }
 
-/* Styling for the output display */
-.main-container section .output {
-  width: 100%; 
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  font-family: monospace;
-  box-sizing: border-box;
-}
-
 /* Section container styling */
 div > section {
     flex: 1;
@@ -150,7 +143,9 @@ div > section {
     border-radius: 10px;
     width: 200%;
     max-width: 200%;
-    margin-left: 335px;
+    margin-left: 100px;
+    width: 650px;
+    margin: 0;
     
 }
 
@@ -176,10 +171,15 @@ textarea {
 }
 
 /* Specific styles for output area */
-textarea#output-area {
-    height: 100px; /* Adjust output area height */
+textarea#queue-output-area {
+    height: 180px; /* Adjust output area height */
     background-color: #f9f9f9;
     overflow-y: auto; /* Scroll if content overflows */
+}
+
+textarea#dequeue-output-area {
+  background-color: #f9f9f9;
+  overflow-y: auto; /* Scroll if content overflows */
 }
 
 /* Button container styles */
