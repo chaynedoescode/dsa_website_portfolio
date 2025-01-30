@@ -16,7 +16,11 @@
        <button onclick="location.href='#works'">Works</button>
      </nav>
   </header>
-  <div class="blob"></div>
+  <div>
+    <video autoplay loop muted>
+      <source src="../static/videos/BG VID.mp4" type="video/mp4">
+     </video> 
+  </div>
 
   <div id="home" class="container">
     <h2>Home</h2>
@@ -162,7 +166,8 @@
     </div>
 </div>
 
-<script> function openModal(modalId) {
+<script> 
+function openModal(modalId) {
   document.getElementById(modalId).style.display = "block";
 }
 
@@ -184,7 +189,7 @@ window.onclick = function (event) {
 
   <div id="works">
     <div class="container">
-        <h2>Works</h2>
+        <h5>Works</h5 >
         <h1>Please Select the Python Activity you Want to View</h1>
         <div class="boxes">
             <a href="/linked_list" class="box">

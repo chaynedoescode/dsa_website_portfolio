@@ -67,4 +67,4 @@ def infix_to_postfix(expression):
         steps.append(''.join(postfix))  # Collect step after popping from stack
 
     final_answer = ''.join(postfix)
-    return f"                 Postfix Expression: {final_answer}\n\nOutput:\n" + '\n'.join(steps)
+    return f"                 Postfix Expression: {final_answer}\n\nSteps:\n" + '\n'.join(steps)
