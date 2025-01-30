@@ -453,10 +453,17 @@ footer .contact-icons img {
   animation: fadeIn 0.5s;
 }
 
-.video-container {
-  position: relative; /* Ensure it is above the background */
-  z-index: 1002; /* Higher than the modal content */
+.video-container video {
+  position: relative;
+  z-index: 1003;
+  width: 100%;
+  max-width: 800px;
+  height: auto; /* Ensure it maintains aspect ratio */
+  object-fit: contain; /* Prevents zooming in */
+  border-radius: 8px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
+
 
 
 .video-container video {
