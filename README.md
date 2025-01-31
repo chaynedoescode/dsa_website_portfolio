@@ -25,3 +25,6 @@ pip install networkx flask plotly
 ```
 Then, run the main script 'app.py' as needed.
 
+Graph Accuracy Considerations
+
+The graph portion of the website is created using Plotly and determines clicks based on plotted points. It was developed and tested on a 16-inch 1080p display using Google Chrome. When tested on larger resolutions up to 1440p (27-inch), the accuracy of point detection decreased. Please keep this in mind when working with different screen sizes and resolutions.
